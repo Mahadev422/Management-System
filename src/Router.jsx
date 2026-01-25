@@ -6,7 +6,6 @@ import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Me from "./pages/profile/Me";
 import UserProfile from "./pages/profile/UserProfile";
-import ClubLayout from "./pages/clubs/ClubLayout";
 import AllClubs from "./pages/clubs/AllClubs";
 import Club from "./pages/clubs/Club";
 import ClubMembers from "./pages/clubs/ClubMembers";
@@ -20,7 +19,6 @@ import Event from "./pages/events/Event";
 import EventOverview from "./pages/events/EventOverview";
 import EventParticipant from "./pages/events/EventParticipant";
 import RegisterEvent from "./pages/events/RegisterEvent";
-import ApplyClub from "./pages/clubs/ApplyClub";
 import Resources from "./pages/resources/Resources";
 
 const Router = createBrowserRouter([
@@ -52,7 +50,6 @@ const Router = createBrowserRouter([
       },
       {
         path: "/clubs",
-        element: <ClubLayout />,
         children: [
           {
             index: true,
@@ -69,10 +66,6 @@ const Router = createBrowserRouter([
               {
                 path: "members",
                 element: <ClubMembers />,
-              },
-              {
-                path: "apply",
-                element: <ApplyClub />,
               },
               {
                 path: "settings",
