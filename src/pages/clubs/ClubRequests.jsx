@@ -3,11 +3,11 @@ import { FaSearch } from "react-icons/fa";
 import MemberCard from "../../components/club/MemberCard";
 import { clubData } from "../../data/clubData";
 
-const ClubMembers = () => {
+const ClubRequests = () => {
   return (
     <div className="bg-white rounded-2xl shadow-lg p-8">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold text-gray-900">Club Members</h2>
+        <h2 className="text-2xl font-bold text-gray-900">Club Requests</h2>
         <div className="flex items-center space-x-4">
           <div className="relative">
             <input
@@ -25,14 +25,8 @@ const ClubMembers = () => {
           <MemberCard key={member.id} member={member} />
         ))}
       </div>
-
-      <div className="text-center">
-        <button className="px-6 py-3 border border-gray-300 text-gray-700 rounded-xl hover:border-blue-500 hover:text-blue-600 transition-colors">
-          View All {clubData.stats.members} Members
-        </button>
-      </div>
     </div>
   );
 };
 
-export default ClubMembers;
+export default ClubRequests;

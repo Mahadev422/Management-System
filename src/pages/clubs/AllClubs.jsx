@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FaUsers, FaSearch, FaFilter, FaPlus } from "react-icons/fa";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import ClubCard from "../../components/club/ClubCard";
-import { clubsList } from "../../data/club";
+import { clubsList } from "../../data/clubList";
 
 // Clubs Page Component
 const AllClubs = () => {
@@ -157,7 +157,7 @@ const AllClubs = () => {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {sortedClubs.map((club) => (
-                <ClubCard key={club.id} club={club} onJoin={handleJoinClub} />
+                <ClubCard key={club.id} club={club} />
               ))}
             </div>
           )}

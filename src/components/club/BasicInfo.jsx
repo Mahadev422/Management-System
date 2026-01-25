@@ -1,0 +1,66 @@
+import React from "react";
+import { FaCalendarAlt, FaHeart, FaMapMarkerAlt, FaRegHeart, FaShareAlt, FaUserPlus, FaUsers } from "react-icons/fa";
+import { clubData } from "../../data/clubData";
+
+const BasicInfo = () => {
+  return (
+    <div className="container mx-auto px-6 relative -mt-16">
+      <div className="bg-white rounded-2xl shadow-2xl p-6 md:p-8">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="flex items-start space-x-6">
+            <div className="relative -mt-20">
+              <img
+                src={clubData.logo}
+                alt={clubData.name}
+                className="w-32 h-32 md:w-40 md:h-40 rounded-2xl object-cover border-8 border-white shadow-2xl"
+              />
+              <div className="absolute -bottom-2 -right-2 bg-blue-600 text-white p-2 rounded-full">
+                <FaUsers className="w-6 h-6" />
+              </div>
+            </div>
+            <div>
+              <div className="flex items-center space-x-3 mb-2">
+                <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
+                  {clubData.name}
+                </h1>
+                <span className="px-4 py-1 bg-blue-100 text-blue-600 rounded-full font-semibold">
+                  {clubData.category}
+                </span>
+              </div>
+              <p className="text-xl text-gray-600 mb-4">{clubData.tagline}</p>
+              <div className="flex items-center space-x-4 text-gray-500">
+                <div className="flex items-center space-x-1">
+                  <FaMapMarkerAlt className="w-5 h-5" />
+                  <span>{clubData.details.meetingLocation}</span>
+                </div>
+                <div className="flex items-center space-x-1">
+                  <FaCalendarAlt className="w-5 h-5" />
+                  <span>{clubData.details.meetingSchedule}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-3">
+            <button
+              className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center space-x-2 ${
+                false
+                  ? "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  : "bg-linear-to-r from-blue-600 to-purple-600 text-white hover:shadow-lg"
+              }`}
+            >
+              <FaUserPlus className="w-5 h-5" />
+              <span>{false ? "Member ✓" : "Join Club"}</span>
+            </button>
+            <button className="px-6 py-3 border border-gray-300 text-gray-700 rounded-xl font-semibold hover:border-blue-500 hover:text-blue-600 transition-colors flex items-center justify-center space-x-2">
+              <FaShareAlt className="w-5 h-5" />
+              <span>Share</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default BasicInfo;

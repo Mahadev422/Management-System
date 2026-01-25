@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { FaBook, FaCamera, FaCode, FaFilm, FaFlask, FaFutbol, FaGamepad, FaMusic, FaPaintBrush, FaStar, FaTree } from "react-icons/fa";
 import { HiOutlineCalendar, HiOutlineUsers } from "react-icons/hi";
+import { Link } from "react-router-dom";
 
-const ClubCard = ({ club, onJoin }) => {
-  const [isJoined, setIsJoined] = useState(club.isJoined);
+const ClubCard = ({ club }) => {
 
   const getCategoryIcon = (category) => {
     const icons = {
@@ -32,7 +32,7 @@ const ClubCard = ({ club, onJoin }) => {
               {getCategoryIcon(club.category)}
             </div>
             <div>
-              <h3 className="text-xl font-bold text-gray-900">{club.name}</h3>
+              <Link to={`/clubs/${club.id}`} className="text-xl font-bold text-gray-900 hover:underline hover:text-blue-700">{club.name}</Link>
               <div className="flex items-center space-x-2 mt-1">
                 <span className={`px-3 py-1 rounded-full text-xs font-semibold ${club.categoryColor}`}>
                   {club.category}
@@ -87,21 +87,15 @@ const ClubCard = ({ club, onJoin }) => {
         {/* Action Buttons */}
         <div className="flex space-x-3">
           <button
-            onClick={() => {
-              setIsJoined(!isJoined);
-              onJoin(club.id, !isJoined);
-            }}
-            className={`flex-1 py-3 rounded-xl font-semibold transition-all duration-300 ${
-              isJoined 
-                ? 'bg-gray-100 text-gray-700 hover:bg-gray-200' 
-                : 'bg-linear-to-r from-blue-600 to-purple-600 text-white hover:shadow-lg'
-            }`}
+            className={`flex-1 py-3 rounded-xl font-semibold transition-all duration-300 
+                bg-linear-to-r from-blue-600 to-purple-600 text-white hover:shadow-lg
+            `}
           >
-            {isJoined ? 'Joined ✓' : 'Join Club'}
+            Join Club
           </button>
-          <button className="px-6 py-3 border border-gray-300 text-gray-700 rounded-xl font-semibold hover:border-blue-500 hover:text-blue-600 transition-colors">
+          <Link to={`/clubs/${club.id}`} className="px-6 py-3 border border-gray-300 text-gray-700 rounded-xl font-semibold hover:border-blue-500 hover:text-blue-600 transition-colors">
             View Details
-          </button>
+          </Link>
         </div>
       </div>
 

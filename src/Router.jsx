@@ -20,19 +20,18 @@ import EventOverview from "./pages/events/EventOverview";
 import EventParticipant from "./pages/events/EventParticipant";
 import RegisterEvent from "./pages/events/RegisterEvent";
 import Resources from "./pages/resources/Resources";
+import ClubEvent from "./pages/clubs/ClubEvent";
+import ClubGallery from "./pages/clubs/ClubGallery";
+import ClubRequests from "./pages/clubs/ClubRequests";
 
 const Router = createBrowserRouter([
-  // {
-  //   path: "/",
-  //   element: <App />,
-  // },
   {
     path: "/",
     element: <App />,
     children: [
       {
         index: true,
-        element: <Home />
+        element: <Home />,
       },
       {
         path: "/profile",
@@ -66,6 +65,18 @@ const Router = createBrowserRouter([
               {
                 path: "members",
                 element: <ClubMembers />,
+              },
+              {
+                path: 'events',
+                element: <ClubEvent />
+              },
+              {
+                path: 'gallery',
+                element: <ClubGallery />
+              },
+              {
+                path: 'requests',
+                element: <ClubRequests />
               },
               {
                 path: "settings",
@@ -108,9 +119,9 @@ const Router = createBrowserRouter([
         ],
       },
       {
-        path: 'resources',
-        element: <Resources />
-      }
+        path: "resources",
+        element: <Resources />,
+      },
     ],
   },
   {
