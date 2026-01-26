@@ -62,7 +62,7 @@ const AllClubs = () => {
         </div>
 
         {/* Empty State Suggestion */}
-        <div className="bg-linear-to-r from-blue-500 to-purple-500 rounded-2xl p-8 text-white text-center">
+        {/* <div className="bg-linear-to-r from-blue-500 to-purple-500 rounded-2xl p-8 text-white text-center">
           <FaUsers className="w-12 h-12 mx-auto mb-4" />
           <h3 className="text-2xl font-bold mb-2">
             Can't find what you're looking for?
@@ -75,7 +75,7 @@ const AllClubs = () => {
           >
             Request For Club
           </button>
-        </div>
+        </div> */}
       </section>
     </div>
   );

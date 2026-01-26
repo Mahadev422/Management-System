@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   FaStar,
   FaUsers,
@@ -15,11 +14,11 @@ import {
 import {
   HiOutlineCalendar,
   HiOutlineClock,
+  HiOutlineLocationMarker,
 } from "react-icons/hi";
 import { Link } from "react-router-dom";
 
 const EventCard = ({ event }) => {
-
   const getEventTypeIcon = (type) => {
     const icons = {
       Workshop: FaFlask,
@@ -58,11 +57,11 @@ const EventCard = ({ event }) => {
       {/* Event Image */}
       <div className="relative h-48 overflow-hidden">
         <Link to={`${event.id}`}>
-        <img
-          src={event.image}
-          alt={event.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-        />
+          <img
+            src={event.image}
+            alt={event.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
         </Link>
         <div className="absolute bottom-4 left-4">
           {getStatusBadge(event.status)}
@@ -90,36 +89,39 @@ const EventCard = ({ event }) => {
         </div>
 
         {/* Event Title */}
-        <Link to={`${event.id}`} className="text-xl hover:text-blue-600 hover:underline font-bold text-gray-900 mb-3 line-clamp-1">
+        <Link
+          to={`${event.id}`}
+          className="text-xl hover:text-blue-600 hover:underline font-bold text-gray-900 mb-3 line-clamp-1"
+        >
           {event.title}
         </Link>
 
         {/* Event Details Grid */}
-        <div className="grid grid-cols-2 gap-4">
-          {/* Date */}
-          <div className="flex items-center space-x-3">
-            <div className="p-2 bg-blue-50 rounded-lg">
-              <HiOutlineCalendar className="w-5 h-5 text-blue-600" />
+        <div className="grid grid-cols-2 gap-2">
+          {/* Date Time */}
+          <div>
+            <div className="flex items-center space-x-3">
+              <div className="p-1 bg-blue-50 rounded-lg">
+                <HiOutlineCalendar className="w-5 h-5 text-blue-600" />
+              </div>
+              <div>
+                <div className="text-sm text-gray-500">Date</div>
+                <div className="font-semibold text-sm text-gray-900">{event.date}</div>
+              </div>
             </div>
-            <div>
-              <div className="text-sm text-gray-500">Date</div>
-              <div className="font-semibold text-gray-900">{event.date}</div>
-            </div>
-          </div>
-
-          {/* Time */}
-          <div className="flex items-center space-x-3">
-            <div className="p-2 bg-purple-50 rounded-lg">
-              <HiOutlineClock className="w-5 h-5 text-purple-600" />
-            </div>
-            <div>
-              <div className="text-sm text-gray-500">Time</div>
-              <div className="font-semibold text-gray-900">{event.time}</div>
+            <div className="flex items-center space-x-3">
+              <div className="p-1 bg-purple-50 rounded-lg">
+                <HiOutlineClock className="w-5 h-5 text-purple-600" />
+              </div>
+              <div>
+                <div className="text-sm text-gray-500">Time</div>
+                <div className="font-semibold text-sm text-gray-900">{event.time}</div>
+              </div>
             </div>
           </div>
 
           {/* Location */}
-          {/* <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-3">
             <div className="p-2 bg-green-50 rounded-lg">
               <HiOutlineLocationMarker className="w-5 h-5 text-green-600" />
             </div>
@@ -129,50 +131,9 @@ const EventCard = ({ event }) => {
                 {event.location}
               </div>
             </div>
-          </div> */}
-        </div>
-
-        {/* Organizers */}
-        {/* <div className="mb-6">
-          <div className="text-sm text-gray-500 mb-2">Organized by</div>
-          <div className="flex items-center space-x-2">
-            {event.organizers.map((organizer, index) => (
-              <div key={index} className="flex items-center space-x-2">
-                <img
-                  src={organizer.avatar}
-                  alt={organizer.name}
-                  className="w-8 h-8 rounded-full object-cover border-2 border-white shadow"
-                />
-                <span className="text-sm font-medium text-gray-900">
-                  {organizer.name}
-                </span>
-                {index < event.organizers.length - 1 && (
-                  <span className="text-gray-300">•</span>
-                )}
-              </div>
-            ))}
           </div>
-        </div> */}
-
-        {/* Action Buttons */}
-        {/* <div className="flex space-x-3">
-          <button
-            onClick={() => {
-              setIsRegistered(!isRegistered);
-              onRegister(event.id, !isRegistered);
-            }}
-            className={`flex-1 py-3 rounded-xl font-semibold transition-all duration-300 ${
-              isRegistered
-                ? "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                : "bg-linear-to-r from-blue-600 to-purple-600 text-white hover:shadow-lg"
-            }`}
-          >
-            {isRegistered ? "Registered ✓" : "Register Now"}
-          </button>
-          <button className="px-6 py-3 border border-gray-300 text-gray-700 rounded-xl font-semibold hover:border-blue-500 hover:text-blue-600 transition-colors flex items-center justify-center">
-            <FaShareAlt className="w-5 h-5" />
-          </button>
-        </div> */}
+        </div>
+        
       </div>
 
       {/* Event Footer */}

@@ -22,8 +22,7 @@ import Resources from "./pages/resources/Resources";
 import ClubEvent from "./pages/clubs/ClubEvent";
 import ClubGallery from "./pages/clubs/ClubGallery";
 import ClubRequests from "./pages/clubs/ClubRequests";
-import EventSchedule from "./pages/events/EventSchedule";
-import EventOrganizers from "./pages/events/EventOrganizers";
+import EventGallery from "./pages/events/EventGallery";
 
 const Router = createBrowserRouter([
   {
@@ -111,12 +110,8 @@ const Router = createBrowserRouter([
                 element: <EventParticipants />,
               },
               {
-                path: "schedule",
-                element: <EventSchedule />,
-              },
-              {
-                path: "organizers",
-                element: <EventOrganizers />,
+                path: 'gallery',
+                element: <EventGallery />
               },
               {
                 path: "register",

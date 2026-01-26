@@ -222,22 +222,6 @@ export const eventData = {
       The event received overwhelmingly positive feedback with 95% satisfaction rate.
     `,
 
-  // Sponsors
-  sponsors: [
-    {
-      name: "TechCorp",
-      logo: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=100&fit=crop",
-    },
-    {
-      name: "InnovateAI",
-      logo: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=200&h=100&fit=crop",
-    },
-    {
-      name: "CloudSystems",
-      logo: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=200&h=100&fit=crop",
-    },
-  ],
-
   // Awards & Prizes
   awards: [
     { name: "Best Startup", value: "$25,000" },
