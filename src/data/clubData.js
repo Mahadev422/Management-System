@@ -9,17 +9,7 @@ export const clubData = {
   coverImage:
     "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=1200&h-400&fit=crop",
   description:
-    "A vibrant community of tech enthusiasts, developers, and innovators dedicated to exploring cutting-edge technologies, building projects, and organizing hackathons. We provide a platform for students to learn, collaborate, and grow together in the field of technology.",
-  longDescription:
     "Founded in 2022, Tech Innovators Society has grown to become one of the largest and most active tech communities on campus. We organize weekly workshops, monthly hackathons, and annual tech festivals that attract participants from across the region. Our members have won national level competitions and secured internships at top tech companies.",
-
-  // Club Stats
-  stats: {
-    members: 1250,
-    events: 42,
-    projects: 156,
-    awards: 18,
-  },
 
   // Club Details
   details: {
@@ -56,19 +46,7 @@ export const clubData = {
       isOnline: false,
       joinDate: "Feb 2022",
       contribution: "Managed 8 projects",
-    },
-    {
-      id: 3,
-      name: "Michael Rodriguez",
-      role: "Technical Lead",
-      avatar:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=face",
-      email: "michael.r@example.com",
-      phone: "+1 (555) 123-4570",
-      isOnline: true,
-      joinDate: "Mar 2022",
-      contribution: "Organized 12 workshops",
-    },
+    }
   ],
 
   // Club Members (sample)
@@ -149,22 +127,18 @@ export const clubData = {
   achievements: [
     {
       title: "Best Tech Club 2023",
-      year: "2023",
-      icon: FaTrophy,
+      year: "2023"
     },
     {
       title: "National Hackathon Winners",
-      year: "2022",
-      icon: FaMedal,
+      year: "2022"
     },
     {
       title: "Google Developer Grant",
-      year: "2023",
-      icon: FaCertificate,
+      year: "2023"
     },
   ],
 
-  // Social Media Links
   socialMedia: {
     instagram: "https://instagram.com/techinnovators",
     twitter: "https://twitter.com/techinnovators",
@@ -172,7 +146,6 @@ export const clubData = {
     youtube: "https://youtube.com/techinnovators",
   },
 
-  // Requirements to Join
   requirements: [
     "Must be a registered student",
     "Basic programming knowledge preferred",

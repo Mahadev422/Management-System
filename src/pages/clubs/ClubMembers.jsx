@@ -1,9 +1,12 @@
-import React from "react";
 import { FaSearch } from "react-icons/fa";
 import MemberCard from "../../components/club/MemberCard";
-import { clubData } from "../../data/clubData";
+import { useClub } from "../../store/useClub";
+import ClubLoader from "../../components/loaders/ClubLoader";
 
 const ClubMembers = () => {
+  const {clubData} = useClub();
+
+  if(Object.keys(clubData).length == 0) return <ClubLoader />
   return (
     <div className="bg-white rounded-2xl shadow-lg p-8">
       <div className="flex justify-between items-center mb-6">
@@ -24,12 +27,6 @@ const ClubMembers = () => {
         {clubData.members.map((member) => (
           <MemberCard key={member.id} member={member} />
         ))}
-      </div>
-
-      <div className="text-center">
-        <button className="px-6 py-3 border border-gray-300 text-gray-700 rounded-xl hover:border-blue-500 hover:text-blue-600 transition-colors">
-          View All {clubData.stats.members} Members
-        </button>
       </div>
     </div>
   );

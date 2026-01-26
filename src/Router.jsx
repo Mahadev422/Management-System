@@ -86,7 +86,7 @@ const Router = createBrowserRouter([
             ],
           },
           {
-            path: "create",
+            path: "create-club",
             element: <CreateClub />,
           },
         ],

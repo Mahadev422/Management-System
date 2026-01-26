@@ -1,7 +1,7 @@
 import { FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
 import { HiOutlineUsers } from "react-icons/hi";
 
-const EventCard = ({ event }) => {
+const ClubEventCard = ({ event }) => {
   return (
     <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 group">
       <div className="relative h-40 overflow-hidden">
@@ -50,4 +50,4 @@ const EventCard = ({ event }) => {
   );
 };
 
-export default EventCard;
+export default ClubEventCard;

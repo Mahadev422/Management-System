@@ -1,26 +1,23 @@
-import { useState } from "react";
-import {
-  FaUsers,
-  FaCalendarAlt,
-  FaMapMarkerAlt,
-  FaHeart,
-  FaShareAlt,
-  FaInstagram,
-  FaTwitter,
-  FaLinkedin,
-  FaYoutube,
-  FaRegHeart,
-  FaRegCalendar,
-  FaUserPlus,
-  FaCheck,
-} from "react-icons/fa";
-import { HiOutlineMail, HiOutlineGlobe } from "react-icons/hi";
-import { clubData } from "../../data/clubData";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import BasicInfo from "../../components/club/BasicInfo";
+import ClubDetails from "../../components/club/ClubDetails";
+import { useClub } from "../../store/useClub";
+import { useEffect } from "react";
+import ClubLoader from "../../components/loaders/ClubLoader";
 
 const Club = () => {
+  const { clubId } = useParams();
+  const location = useLocation();
 
+  console.log(location.pathname)
+  const { getClubById, clubData } = useClub();
+
+  useEffect(() => {
+    if (Object.keys(clubData).length == 0) 
+      getClubById(clubId);
+  }, [clubData]);
+  
+  if (Object.keys(clubData).length == 0) return <ClubLoader />;
   return (
     <div className="min-h-screen bg-linear-to-b from-gray-50 to-white">
       {/* Hero Section with Cover Image */}
@@ -44,10 +41,10 @@ const Club = () => {
           {/* Left Column - Main Content */}
           <div className="lg:w-2/3">
             {/* Navigation Tabs */}
-            <div className="bg-white rounded-xl shadow-lg mb-8 overflow-hidden">
+            <div className="bg-white rounded shadow-lg mb-8 overflow-hidden">
               <div className="flex justify-around overflow-x-auto">
                 {[
-                  { name: "Overview", link: "" },
+                  { name: "About", link: "" },
                   { name: "Members", link: "members" },
                   { name: "Events", link: "events" },
                   { name: "Gallery", link: "gallery" },
@@ -70,117 +67,7 @@ const Club = () => {
           </div>
 
           {/* Right Column - Sidebar */}
-          <div className="lg:w-1/3 space-y-6">
-            {/* Club Details Card */}
-            <div className="bg-white rounded-2xl shadow-lg p-6">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">
-                Club Details
-              </h3>
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <FaCalendarAlt className="w-5 h-5 text-blue-600" />
-                  <div>
-                    <div className="text-sm text-gray-500">Founded</div>
-                    <div className="font-medium">
-                      {clubData.details.founded}
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <FaMapMarkerAlt className="w-5 h-5 text-blue-600" />
-                  <div>
-                    <div className="text-sm text-gray-500">
-                      Meeting Location
-                    </div>
-                    <div className="font-medium">
-                      {clubData.details.meetingLocation}
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <FaRegCalendar className="w-5 h-5 text-blue-600" />
-                  <div>
-                    <div className="text-sm text-gray-500">Schedule</div>
-                    <div className="font-medium">
-                      {clubData.details.meetingSchedule}
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <HiOutlineGlobe className="w-5 h-5 text-blue-600" />
-                  <div>
-                    <div className="text-sm text-gray-500">Website</div>
-                    <a
-                      href={clubData.details.website}
-                      className="font-medium text-blue-600 hover:underline"
-                    >
-                      {clubData.details.website}
-                    </a>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <HiOutlineMail className="w-5 h-5 text-blue-600" />
-                  <div>
-                    <div className="text-sm text-gray-500">Email</div>
-                    <a
-                      href={`mailto:${clubData.details.email}`}
-                      className="font-medium text-blue-600 hover:underline"
-                    >
-                      {clubData.details.email}
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Social Media */}
-            <div className="bg-white rounded-2xl shadow-lg p-6">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">
-                Connect With Us
-              </h3>
-              <div className="flex space-x-4">
-                <a
-                  href={clubData.socialMedia.instagram}
-                  className="p-3 bg-linear-to-r from-pink-500 to-purple-500 text-white rounded-xl hover:shadow-lg"
-                >
-                  <FaInstagram className="w-6 h-6" />
-                </a>
-                <a
-                  href={clubData.socialMedia.twitter}
-                  className="p-3 bg-blue-400 text-white rounded-xl hover:shadow-lg"
-                >
-                  <FaTwitter className="w-6 h-6" />
-                </a>
-                <a
-                  href={clubData.socialMedia.linkedin}
-                  className="p-3 bg-blue-700 text-white rounded-xl hover:shadow-lg"
-                >
-                  <FaLinkedin className="w-6 h-6" />
-                </a>
-                <a
-                  href={clubData.socialMedia.youtube}
-                  className="p-3 bg-red-600 text-white rounded-xl hover:shadow-lg"
-                >
-                  <FaYoutube className="w-6 h-6" />
-                </a>
-              </div>
-            </div>
-
-            {/* Join Requirements */}
-            <div className="bg-white rounded-2xl shadow-lg p-6">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">
-                Requirements to Join
-              </h3>
-              <ul className="space-y-3">
-                {clubData.requirements.map((req, index) => (
-                  <li key={index} className="flex items-start space-x-3">
-                    <FaCheck className="w-5 h-5 text-green-500 mt-0.5" />
-                    <span className="text-gray-700">{req}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+          <ClubDetails />
         </div>
       </div>
     </div>
