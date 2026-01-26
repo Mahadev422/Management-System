@@ -13,16 +13,17 @@ import ClubOverview from "./pages/clubs/ClubOverview";
 import CreateClub from "./pages/clubs/CreateClub";
 import ClubSettings from "./pages/clubs/ClubSettings";
 import ProfileLayout from "./pages/profile/ProfileLayout";
-import EventLayout from "./pages/events/EventLayout";
 import AllEvents from "./pages/events/AllEvents";
 import Event from "./pages/events/Event";
 import EventOverview from "./pages/events/EventOverview";
-import EventParticipant from "./pages/events/EventParticipant";
+import EventParticipants from "./pages/events/EventParticipants";
 import RegisterEvent from "./pages/events/RegisterEvent";
 import Resources from "./pages/resources/Resources";
 import ClubEvent from "./pages/clubs/ClubEvent";
 import ClubGallery from "./pages/clubs/ClubGallery";
 import ClubRequests from "./pages/clubs/ClubRequests";
+import EventSchedule from "./pages/events/EventSchedule";
+import EventOrganizers from "./pages/events/EventOrganizers";
 
 const Router = createBrowserRouter([
   {
@@ -67,16 +68,16 @@ const Router = createBrowserRouter([
                 element: <ClubMembers />,
               },
               {
-                path: 'events',
-                element: <ClubEvent />
+                path: "events",
+                element: <ClubEvent />,
               },
               {
-                path: 'gallery',
-                element: <ClubGallery />
+                path: "gallery",
+                element: <ClubGallery />,
               },
               {
-                path: 'requests',
-                element: <ClubRequests />
+                path: "requests",
+                element: <ClubRequests />,
               },
               {
                 path: "settings",
@@ -92,7 +93,6 @@ const Router = createBrowserRouter([
       },
       {
         path: "/events",
-        element: <EventLayout />,
         children: [
           {
             index: true,
@@ -107,8 +107,16 @@ const Router = createBrowserRouter([
                 element: <EventOverview />,
               },
               {
-                path: "participant",
-                element: <EventParticipant />,
+                path: "participants",
+                element: <EventParticipants />,
+              },
+              {
+                path: "schedule",
+                element: <EventSchedule />,
+              },
+              {
+                path: "organizers",
+                element: <EventOrganizers />,
               },
               {
                 path: "register",

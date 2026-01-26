@@ -16,10 +16,9 @@ import {
   HiOutlineCalendar,
   HiOutlineClock,
 } from "react-icons/hi";
+import { Link } from "react-router-dom";
 
-const EventCard = ({ event, onRegister, onFavorite }) => {
-  const [isFavorite, setIsFavorite] = useState(event.isFavorite);
-  const [isRegistered, setIsRegistered] = useState(event.isRegistered);
+const EventCard = ({ event }) => {
 
   const getEventTypeIcon = (type) => {
     const icons = {
@@ -58,11 +57,13 @@ const EventCard = ({ event, onRegister, onFavorite }) => {
     <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden group">
       {/* Event Image */}
       <div className="relative h-48 overflow-hidden">
+        <Link to={`${event.id}`}>
         <img
           src={event.image}
           alt={event.title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
+        </Link>
         <div className="absolute bottom-4 left-4">
           {getStatusBadge(event.status)}
         </div>
@@ -89,9 +90,9 @@ const EventCard = ({ event, onRegister, onFavorite }) => {
         </div>
 
         {/* Event Title */}
-        <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-1">
+        <Link to={`${event.id}`} className="text-xl hover:text-blue-600 hover:underline font-bold text-gray-900 mb-3 line-clamp-1">
           {event.title}
-        </h3>
+        </Link>
 
         {/* Event Details Grid */}
         <div className="grid grid-cols-2 gap-4">

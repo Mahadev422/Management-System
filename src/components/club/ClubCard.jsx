@@ -32,7 +32,7 @@ const ClubCard = ({ club }) => {
               {getCategoryIcon(club.category)}
             </div>
             <div>
-              <Link to={`/clubs/${club.id}`} className="text-xl font-bold text-gray-900 hover:underline hover:text-blue-700">{club.name}</Link>
+              <Link to={`${club.id}`} className="text-xl font-bold text-gray-900 hover:underline hover:text-blue-700">{club.name}</Link>
               <div className="flex items-center space-x-2 mt-1">
                 <span className={`px-3 py-1 rounded-full text-xs font-semibold ${club.categoryColor}`}>
                   {club.category}
@@ -93,7 +93,7 @@ const ClubCard = ({ club }) => {
           >
             Join Club
           </button>
-          <Link to={`/clubs/${club.id}`} className="px-6 py-3 border border-gray-300 text-gray-700 rounded-xl font-semibold hover:border-blue-500 hover:text-blue-600 transition-colors">
+          <Link to={`${club.id}`} className="px-6 py-3 border border-gray-300 text-gray-700 rounded-xl font-semibold hover:border-blue-500 hover:text-blue-600 transition-colors">
             View Details
           </Link>
         </div>
