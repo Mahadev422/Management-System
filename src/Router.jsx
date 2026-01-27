@@ -23,6 +23,11 @@ import ClubEvent from "./pages/clubs/ClubEvent";
 import ClubGallery from "./pages/clubs/ClubGallery";
 import ClubRequests from "./pages/clubs/ClubRequests";
 import EventGallery from "./pages/events/EventGallery";
+import ProfileOverview from "./pages/profile/ProfileOverview";
+import MyEvents from "./pages/profile/MyEvents";
+import MyClubs from "./pages/profile/MyClubs";
+import MyAchievements from "./pages/profile/MyAchievements";
+import MySettings from "./pages/profile/MySettings";
 
 const Router = createBrowserRouter([
   {
@@ -35,11 +40,32 @@ const Router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <ProfileLayout />,
         children: [
           {
-            index: true,
+            path: '',
             element: <Me />,
+            children: [
+              {
+                index: true,
+                element: <ProfileOverview />
+              },
+              {
+                path: 'events',
+                element: <MyEvents />
+              },
+              {
+                path: 'clubs',
+                element: <MyClubs />
+              },
+              {
+                path: 'achievements',
+                element: <MyAchievements />
+              },
+              {
+                path: 'settings',
+                element: <MySettings />
+              }
+            ]
           },
           {
             path: ":userId",

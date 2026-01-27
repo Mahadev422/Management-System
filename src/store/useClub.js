@@ -15,8 +15,6 @@ export const useClub = create((set, get) => ({
   set,
   getAllClubs: async () => {
     set({ clubs: [...clubsList] });
-    console.log(JSON.stringify(clubData))
-
     try {
       const res = await fetch(`${url}/club/get-all`);
       const resData = await res.json();
