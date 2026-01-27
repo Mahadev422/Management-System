@@ -4,18 +4,16 @@ import ClubCard from "../../components/club/ClubCard";
 import { useClub } from "../../store/useClub";
 import ClubNotFound from "../../components/club/ClubNotFound";
 import ClubControl from "../../components/club/ClubControl";
+import ClubLoader from '../../components/loaders/ClubLoader'
 
 const AllClubs = () => {
-  const { getAllClubs } = useClub();
-  const [clubs, setClubs] = useState([]);
+  const { getAllClubs, clubs } = useClub();
+  // const [clubs, setClubs] = useState([]);
   const [loading, setLoading] = useState(false);
   
   useEffect(() => {
     setLoading(true);
-    if(clubs.length === 0) {
-      const d = getAllClubs();
-      setClubs([...d]);
-    }
+    if(clubs.length === 0) getAllClubs();
     setLoading(false);
   },[clubs]);
 
@@ -50,7 +48,7 @@ const AllClubs = () => {
             </h2>
           </div>
 
-          {(loading) ? <p>Loading...</p> : filteredClubs.length === 0 ? (
+          {(loading || clubs.length == 0) ? <ClubLoader /> : filteredClubs.length === 0 ? (
             <ClubNotFound setFilterCategory={setFilterCategory} setSearchTerm={setSearchTerm} />
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">

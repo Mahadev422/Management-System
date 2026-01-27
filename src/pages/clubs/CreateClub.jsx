@@ -1,38 +1,21 @@
 import { useState } from "react";
+import { useClub } from "../../store/useClub";
 
 const CreateClub = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    category: "",
-    description: "",
-  });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData);
-  };
+  const { handleCreateClub } = useClub();
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-lg">
         <h2 className="text-2xl font-bold text-gray-800 mb-4">Create Club</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleCreateClub} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Name
             </label>
             <input
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
+              name="clubName"
               className="border border-gray-300 rounded-lg p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               placeholder="Enter club name"
               required
@@ -45,8 +28,6 @@ const CreateClub = () => {
             </label>
             <select
               name="category"
-              value={formData.category}
-              onChange={handleChange}
               className="border border-gray-300 rounded-lg p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               required
             >
@@ -63,8 +44,6 @@ const CreateClub = () => {
             </label>
             <textarea
               name="description"
-              value={formData.description}
-              onChange={handleChange}
               className="border border-gray-300 rounded-lg p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               rows={4}
               placeholder="Enter club description"
