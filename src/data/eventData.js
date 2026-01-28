@@ -45,7 +45,6 @@ export const eventData = {
       This event is designed for students, professionals, researchers, and anyone passionate about technology. Whether you're a beginner or an expert, you'll find valuable insights and connections at this premier technology gathering.
     `,
 
-  // Event Highlights
   highlights: [
     "Live AI Product Demos",
     "Networking with Industry Leaders",
@@ -83,105 +82,6 @@ export const eventData = {
     },
   ],
 
-  // Chief Guest & Speakers
-  speakers: [
-    {
-      id: 1,
-      name: "Dr. Sarah Chen",
-      avatar:
-        "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=200&h=200&fit=crop&crop=face",
-      role: "Chief Guest & Keynote Speaker",
-      title: "Head of AI Research at TechCorp",
-      bio: "Leading AI researcher with 15+ years of experience in machine learning and ethical AI development.",
-      isChiefGuest: true,
-      twitter: "https://twitter.com/sarahchen",
-      linkedin: "https://linkedin.com/in/sarahchen",
-    },
-    {
-      id: 2,
-      name: "Michael Rodriguez",
-      avatar:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=face",
-      role: "Guest Speaker",
-      title: "CTO at InnovateAI",
-      bio: "Technology leader specializing in AI applications for business transformation.",
-      isChiefGuest: false,
-      twitter: "https://twitter.com/mikerod",
-      linkedin: "https://linkedin.com/in/mikerod",
-    },
-    {
-      id: 3,
-      name: "Dr. Alex Johnson",
-      avatar:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face",
-      role: "Workshop Facilitator",
-      title: "Professor of Computer Science",
-      bio: "Expert in machine learning algorithms and their practical applications.",
-      isChiefGuest: false,
-      linkedin: "https://linkedin.com/in/alexjohnson",
-    },
-  ],
-
-  // Event Schedule
-  schedule: [
-    {
-      time: "9:00 AM - 9:30 AM",
-      title: "Registration & Welcome Coffee",
-      description: "Check-in and networking session",
-      location: "Main Lobby",
-      speaker: null,
-    },
-    {
-      time: "9:30 AM - 10:30 AM",
-      title: "Opening Keynote: The Future of AI",
-      description: "Dr. Sarah Chen shares insights on AI's future impact",
-      location: "Main Auditorium",
-      speaker: "Dr. Sarah Chen",
-    },
-    {
-      time: "10:45 AM - 12:00 PM",
-      title: "Technical Workshop: ML Algorithms",
-      description: "Hands-on session on machine learning implementation",
-      location: "Workshop Room 1",
-      speaker: "Dr. Alex Johnson",
-    },
-    {
-      time: "12:00 PM - 1:00 PM",
-      title: "Networking Lunch",
-      description: "Catered lunch and networking opportunity",
-      location: "Convention Hall",
-      speaker: null,
-    },
-    {
-      time: "1:00 PM - 2:30 PM",
-      title: "Panel Discussion: Ethical AI",
-      description: "Experts discuss ethical considerations in AI development",
-      location: "Main Auditorium",
-      speaker: "Panel of Experts",
-    },
-    {
-      time: "2:45 PM - 4:00 PM",
-      title: "Startup Pitch Competition",
-      description: "Emerging startups present their AI solutions",
-      location: "Innovation Theater",
-      speaker: "Various Startups",
-    },
-    {
-      time: "4:15 PM - 5:30 PM",
-      title: "AI Product Exhibition",
-      description: "Showcase of latest AI products and technologies",
-      location: "Exhibition Hall",
-      speaker: null,
-    },
-    {
-      time: "5:30 PM - 6:00 PM",
-      title: "Closing Ceremony & Awards",
-      description: "Prize distribution and closing remarks",
-      location: "Main Auditorium",
-      speaker: "Organizing Committee",
-    },
-  ],
-
   // Registration Info
   registration: {
     deadline: "December 13, 2024",
@@ -209,18 +109,6 @@ export const eventData = {
     },
   },
 
-  // What Happened (For past events)
-  eventReport: `
-      The Annual Tech Summit 2023 was a tremendous success with over 400 attendees from across the country. 
-      Key achievements:
-      • 15+ industry leaders shared insights
-      • 8 hands-on workshops conducted
-      • 25 startups showcased innovations
-      • 150+ job interviews conducted
-      • $50,000 in prizes awarded to winners
-      
-      The event received overwhelmingly positive feedback with 95% satisfaction rate.
-    `,
 
   // Awards & Prizes
   awards: [

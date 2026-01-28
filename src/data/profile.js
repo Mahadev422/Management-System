@@ -7,9 +7,9 @@ export const userData = {
   username: "@alexjohnson",
   title: "Computer Science Student",
   bio: "Passionate about AI, web development, and open-source projects. Always looking to learn and contribute to the tech community.",
-  avatar:
+  profilePic:
     "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
-  coverPhoto:
+  coverImage:
     "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=1200&h=400&fit=crop",
 
   // Contact Information
@@ -47,7 +47,7 @@ export const userData = {
   },
 
   // Joined Clubs
-  joinedClubs: [
+  clubsJoined: [
     {
       id: 1,
       name: "Tech Innovators Society",
@@ -116,7 +116,7 @@ export const userData = {
   ],
 
   // Participated Events
-  participatedEvents: [
+  eventsParticipated: [
     {
       id: 1,
       title: "Annual Tech Summit 2023",
@@ -175,27 +175,7 @@ export const userData = {
     },
   ],
 
-  // Upcoming Events
-  upcomingEvents: [
-    {
-      id: 6,
-      title: "Tech Conference 2024",
-      description: "Upcoming technology conference featuring industry leaders",
-      date: "Jan 20, 2024",
-      time: "9:00 AM - 5:00 PM",
-      location: "Convention Center",
-      status: "registered",
-    },
-    {
-      id: 7,
-      title: "Data Science Workshop",
-      description: "Advanced workshop on data analysis and visualization",
-      date: "Feb 15, 2024",
-      time: "1:00 PM - 4:00 PM",
-      location: "Data Lab",
-      status: "registered",
-    },
-  ],
+
 
   // Achievements
   achievements: [
@@ -229,25 +209,4 @@ export const userData = {
     },
   ],
 
-  // Skills
-  skills: [
-    { name: "JavaScript", level: "Expert" },
-    { name: "React", level: "Advanced" },
-    { name: "Python", level: "Advanced" },
-    { name: "AI/ML", level: "Intermediate" },
-    { name: "UI/UX Design", level: "Intermediate" },
-    { name: "Project Management", level: "Intermediate" },
-  ],
-
-  // Interests
-  interests: [
-    "Artificial Intelligence",
-    "Web Development",
-    "Open Source",
-    "Startups",
-    "Music",
-    "Photography",
-    "Travel",
-    "Reading",
-  ],
 };

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FaCalendarPlus } from "react-icons/fa";
 import ClubEventCard from "../../components/club/ClubEventCard";
 import { clubData } from "../../data/clubData";
+import { Link } from "react-router-dom";
 
 const upcomingEvents = (
   <div className="bg-white rounded-2xl shadow-lg p-8">
@@ -9,7 +10,7 @@ const upcomingEvents = (
       <h2 className="text-2xl font-bold text-gray-900">Upcoming Events</h2>
       <button className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
         <FaCalendarPlus className="w-5 h-5" />
-        <span>Create Event</span>
+        <Link to='/events/create-event'>Create Event</Link>
       </button>
     </div>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

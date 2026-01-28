@@ -28,6 +28,7 @@ import MyEvents from "./pages/profile/MyEvents";
 import MyClubs from "./pages/profile/MyClubs";
 import MyAchievements from "./pages/profile/MyAchievements";
 import MySettings from "./pages/profile/MySettings";
+import CreateEvent from "./pages/events/CreateEvent";
 
 const Router = createBrowserRouter([
   {
@@ -138,13 +139,13 @@ const Router = createBrowserRouter([
               {
                 path: 'gallery',
                 element: <EventGallery />
-              },
-              {
-                path: "register",
-                element: <RegisterEvent />,
-              },
+              }
             ],
           },
+          {
+            path: 'create-event',
+            element: <CreateEvent />
+          }
         ],
       },
       {

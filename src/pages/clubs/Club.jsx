@@ -9,7 +9,6 @@ const Club = () => {
   const { clubId } = useParams();
   const location = useLocation();
 
-  console.log(location.pathname)
   const { getClubById, clubData } = useClub();
 
   useEffect(() => {

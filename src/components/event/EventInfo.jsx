@@ -151,10 +151,6 @@ const EventInfo = () => {
         <h2 className="text-2xl font-bold text-gray-900 mb-6">Venue Details</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="font-bold text-gray-900 text-lg mb-2">
-              {eventData.venue.name}
-            </h4>
-            <p className="text-gray-600 mb-4">{eventData.venue.address}</p>
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <FaMapMarkerAlt className="w-5 h-5 text-blue-600" />
@@ -181,14 +177,6 @@ const EventInfo = () => {
                   <div className="font-medium">{eventData.duration}</div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div className="bg-gray-100 rounded-xl p-4 flex items-center justify-center">
-            <div className="text-center">
-              <FaMapMarkerAlt className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-              <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                View on Map
-              </button>
             </div>
           </div>
         </div>

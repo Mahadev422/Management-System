@@ -2,8 +2,11 @@ import React from "react";
 import { FaCertificate, FaUserFriends, FaCalendarCheck, FaMedal, FaChartLine } from "react-icons/fa";
 import AchievementBadge from "../../components/profile/AchievementBadge";
 import { userData } from "../../data/profile";
+import { useUser } from "../../store/useUser";
 
 const MyAchievements = () => {
+  const {user} = useUser();
+
   return (
     <div className="space-y-8">
       {/* Achievements Grid */}
