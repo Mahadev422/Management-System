@@ -3,7 +3,6 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "./pages/App";
 import Home from "./pages/Home";
 import Login from "./pages/auth/Login";
-import Register from "./pages/auth/Register";
 import Me from "./pages/profile/Me";
 import UserProfile from "./pages/profile/UserProfile";
 import AllClubs from "./pages/clubs/AllClubs";
@@ -12,7 +11,6 @@ import ClubMembers from "./pages/clubs/ClubMembers";
 import ClubOverview from "./pages/clubs/ClubOverview";
 import CreateClub from "./pages/clubs/CreateClub";
 import ClubSettings from "./pages/clubs/ClubSettings";
-import ProfileLayout from "./pages/profile/ProfileLayout";
 import AllEvents from "./pages/events/AllEvents";
 import Event from "./pages/events/Event";
 import EventOverview from "./pages/events/EventOverview";
@@ -43,30 +41,30 @@ const Router = createBrowserRouter([
         path: "/profile",
         children: [
           {
-            path: '',
+            path: "",
             element: <Me />,
             children: [
               {
                 index: true,
-                element: <ProfileOverview />
+                element: <ProfileOverview />,
               },
               {
-                path: 'events',
-                element: <MyEvents />
+                path: "events",
+                element: <MyEvents />,
               },
               {
-                path: 'clubs',
-                element: <MyClubs />
+                path: "clubs",
+                element: <MyClubs />,
               },
               {
-                path: 'achievements',
-                element: <MyAchievements />
+                path: "achievements",
+                element: <MyAchievements />,
               },
               {
-                path: 'settings',
-                element: <MySettings />
-              }
-            ]
+                path: "settings",
+                element: <MySettings />,
+              },
+            ],
           },
           {
             path: ":userId",
@@ -137,15 +135,15 @@ const Router = createBrowserRouter([
                 element: <EventParticipants />,
               },
               {
-                path: 'gallery',
-                element: <EventGallery />
-              }
+                path: "gallery",
+                element: <EventGallery />,
+              },
             ],
           },
           {
-            path: 'create-event',
-            element: <CreateEvent />
-          }
+            path: "create-event",
+            element: <CreateEvent />,
+          },
         ],
       },
       {
@@ -155,21 +153,8 @@ const Router = createBrowserRouter([
     ],
   },
   {
-    path: "/auth",
-    children: [
-      {
-        path: "login",
-        element: <Login />,
-      },
-      {
-        path: "register",
-        element: <Register />,
-      },
-      {
-        path: "forgot-password",
-        element: <h1>Forgot Password</h1>,
-      },
-    ],
+    path: "/login",
+    element: <Login />,
   },
 ]);
 

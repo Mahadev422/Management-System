@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useEvent } from "../../store/useEvent";
+import { useHelper } from "../../store/useHelper";
 
 const CreateEventForm = () => {
   const { handleCreateEvent } = useEvent();
+  const { eventTypes } = useHelper();
 
   const desc = `The Annual Tech Summit 2024 brings together the brightest minds in technology to discuss and showcase groundbreaking innovations in artificial intelligence, machine learning, and emerging technologies. This year's theme focuses on "Ethical AI and Responsible Innovation."
 
@@ -74,7 +76,16 @@ const CreateEventForm = () => {
                 placeholder:text-gray-400 hover:border-gray-400`}
               />
             </div>
-
+            <div>
+              <label htmlFor="eventType">Event Type</label>
+              <select required name="eventType" id="eventType" className={`w-full rounded-xl border border-gray-300 px-4 py-3.5 text-gray-900
+                focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 outline-none
+                transition-all duration-200 bg-white
+                placeholder:text-gray-400 hover:border-gray-400`}>
+                  <option value="">Select</option>
+                {eventTypes.map((type, i) => <option key={i} value={type} >{type.charAt(0).toUpperCase() + type.slice(1)}</option>)}
+              </select>
+            </div>
             <div className="grid gap-2">
               <label htmlFor="tagline">Tagline</label>
               <input

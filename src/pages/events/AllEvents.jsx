@@ -12,6 +12,7 @@ import { HiOutlineTag } from "react-icons/hi";
 import EventCard from "../../components/event/EventCard"
 import { eventList } from "../../data/eventData";
 import EventHeroSection from "../../components/event/EventHeroSection";
+import { useHelper } from "../../store/useHelper";
 
 // Events Page Component
 const AllEvent = () => {
@@ -22,19 +23,8 @@ const AllEvent = () => {
   const [filterType, setFilterType] = useState("all");
   const [sortBy, setSortBy] = useState("date");
 
-  const eventTypes = [
-    "all",
-    "Conference",
-    "Workshop",
-    "Concert",
-    "Sports",
-    "Networking",
-    "Art",
-    "Hackathon",
-    "Seminar",
-    "Webinar",
-    "Gaming",
-  ];
+  const {eventTypes} = useHelper();
+  
   const statusOptions = [
     {
       value: "all",

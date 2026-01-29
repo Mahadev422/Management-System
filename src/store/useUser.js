@@ -17,5 +17,8 @@ export const useUser = create((set, get) => ({
     }
     set({user: resData.msg, userData: {...resData.msg}});
     set({loading: false});
+  },
+  userLogin: async (formData) => {
+    console.log(formData)
   }
 }));

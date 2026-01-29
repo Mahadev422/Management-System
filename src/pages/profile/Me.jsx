@@ -23,9 +23,13 @@ import { Link, Outlet } from "react-router-dom";
 import { userData } from "../../data/profile";
 import BasicDetails from "../../components/profile/BasicDetails";
 import { useUser } from "../../store/useUser";
+import { useLogin } from "../../store/useAuth";
 // Main Profile Page Component
 const Me = () => {
   const { getUserData, userData, loading } = useUser();
+  const {user} = useLogin();
+
+  console.log(user);
 
   useEffect(() => {
     if (Object.keys(userData).length == 0) getUserData();
