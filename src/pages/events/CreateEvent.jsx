@@ -1,258 +1,283 @@
 import { useState } from "react";
+import { useEvent } from "../../store/useEvent";
 
-const initialState = {
-  title: "",
-  tagline: "",
-  type: "Conference",
-  status: "upcoming",
-  date: "",
-  time: "",
-  duration: "",
-  venue: {
-    name: "",
-    address: "",
-    building: "",
-    room: "",
-    capacity: "",
-  },
-  coverImage: "",
-  images: [""],
-  description: "",
-  detailedDescription: "",
-  highlights: [""],
-  registration: {
-    deadline: "",
-    fee: 0,
-    isFree: false,
-    capacity: "",
-  },
-};
+const CreateEventForm = () => {
+  const { handleCreateEvent } = useEvent();
 
-export default function EventForm() {
-  const [form, setForm] = useState(initialState);
+  const desc = `The Annual Tech Summit 2024 brings together the brightest minds in technology to discuss and showcase groundbreaking innovations in artificial intelligence, machine learning, and emerging technologies. This year's theme focuses on "Ethical AI and Responsible Innovation."
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
-  };
+      What to Expect:
+      • Keynote speeches from industry pioneers
+      • Hands-on workshops and technical sessions
+      • AI product demonstrations and exhibitions
+      • Networking opportunities with tech leaders
+      • Startup pitch competitions
+      • Career fair with top tech companies
 
-  const handleNestedChange = (section, field, value) => {
-    setForm({
-      ...form,
-      [section]: { ...form[section], [field]: value },
-    });
-  };
-
-  const handleArrayChange = (field, index, value) => {
-    const updated = [...form[field]];
-    updated[index] = value;
-    setForm({ ...form, [field]: updated });
-  };
-
-  const addArrayItem = (field) => {
-    setForm({ ...form, [field]: [...form[field], ""] });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(form);
-  };
-
-  const input =
-    "w-full rounded-xl border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500";
-
-  const label = "text-sm font-medium text-gray-700";
+      This event is designed for students, professionals, researchers, and anyone passionate about technology. Whether you're a beginner or an expert, you'll find valuable insights and connections at this premier technology gathering.`;
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="mx-auto max-w-4xl space-y-8 rounded-2xl bg-white p-8 shadow-lg"
-    >
-      <h2 className="text-2xl font-bold text-gray-800">Create Event</h2>
+    <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100 flex items-center justify-center p-4 md:p-6">
+      <form
+        onSubmit={handleCreateEvent}
+        className="w-full max-w-4xl bg-white rounded-2xl shadow-2xl shadow-gray-200/50 p-6 md:p-10 space-y-10 border border-gray-100"
+      >
+        {/* Header */}
+        <div className="space-y-3 border-b pb-6">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-indigo-100 rounded-xl flex items-center justify-center">
+              <svg
+                className="w-6 h-6 text-indigo-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                />
+              </svg>
+            </div>
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900 bg-linear-to-r from-gray-900 to-gray-700 bg-clip-text">
+                Create New Event
+              </h1>
+              <p className="text-gray-500 text-sm mt-1">
+                Fill in the details below to publish your event
+              </p>
+            </div>
+          </div>
+        </div>
 
-      {/* BASIC INFO */}
-      <section className="space-y-4">
-        <label className={label}>Event Title</label>
-        <input
-          className={input}
-          name="title"
-          required
-          value={form.title}
-          onChange={handleChange}
-        />
-
-        <label className={label}>Tagline</label>
-        <input
-          className={input}
-          name="tagline"
-          value={form.tagline}
-          onChange={handleChange}
-        />
-
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          <div>
-            <label className={label}>Type</label>
-            <select
-              className={input}
-              name="type"
-              value={form.type}
-              onChange={handleChange}
-            >
-              <option>Conference</option>
-              <option>Workshop</option>
-              <option>Hackathon</option>
-              <option>Seminar</option>
-              <option>Meetup</option>
-            </select>
+        {/* Basic Info */}
+        <section className="space-y-4">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-5 bg-indigo-600 rounded-full"></div>
+            <h2 className="text-xl font-bold text-gray-800">
+              Basic Information
+            </h2>
           </div>
 
-          <div>
-            <label className={label}>Date</label>
-            <input
-              type="date"
-              className={input}
-              name="date"
-              required
-              value={form.date}
-              onChange={handleChange}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="grid gap-2">
+              <label htmlFor="title">Event Title *</label>
+              <input
+                type="text"
+                name="title"
+                id="title"
+                placeholder="e.g.- Annual Tech Summit 2024"
+                className={`w-full rounded-xl border border-gray-300 px-4 py-3.5 text-gray-900
+                focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 outline-none
+                transition-all duration-200 bg-white
+                placeholder:text-gray-400 hover:border-gray-400`}
+              />
+            </div>
+
+            <div className="grid gap-2">
+              <label htmlFor="tagline">Tagline</label>
+              <input
+                type="text"
+                name="tagline"
+                id="tagline"
+                placeholder="e.g.- Exploring the Frontiers of Artificial Intelligence and Technological Innovation"
+                className={`w-full rounded-xl border border-gray-300 px-4 py-3.5 text-gray-900
+                focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 outline-none
+                transition-all duration-200 bg-white
+                placeholder:text-gray-400 hover:border-gray-400`}
+              />
+            </div>
+          </div>
+
+          <div className="grid gap-2">
+            <label htmlFor="description">Description</label>
+            <textarea
+              type="text"
+              row={4}
+              placeholder={`e.g.- ${desc}`}
+              className={`w-full rounded-xl border border-gray-300 px-4 py-3.5 text-gray-900
+                focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 outline-none
+                transition-all duration-200 bg-white
+                placeholder:text-gray-400 hover:border-gray-400`}
             />
           </div>
+
+          <div className="grid gap-2">
+            <label htmlFor="venue">Venue</label>
+            <input
+              type="text"
+              id="venue"
+              name="venue"
+              placeholder="e.g.- NLHC Computer Lab-1, IIT-ISM Dhnabad"
+              className={`w-full rounded-xl border border-gray-300 px-4 py-3.5 text-gray-900
+                focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 outline-none
+                transition-all duration-200 bg-white
+                placeholder:text-gray-400 hover:border-gray-400`}
+            />
+          </div>
+        </section>
+
+        {/* Date & Time */}
+        <section className="space-y-6">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-5 bg-indigo-600 rounded-full"></div>
+            <h2 className="text-xl font-bold text-gray-800">Schedule</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <label htmlFor="from">From</label>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label htmlFor="fromDate">Date</label>
+                  <input
+                    type="date"
+                    id="fromDate"
+                    name="fromDate"
+                    className={`w-full rounded-xl border border-gray-300 px-4 py-3.5 text-gray-900
+                focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 outline-none
+                transition-all duration-200 bg-white
+                placeholder:text-gray-400 hover:border-gray-400`}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="fromDate">Time</label>
+                  <input
+                    type="time"
+                    id="fromTime"
+                    name="fromTime"
+                    placeholder="eg. 09:30 AM"
+                    className={`w-full rounded-xl border border-gray-300 px-4 py-3.5 text-gray-900
+                focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 outline-none
+                transition-all duration-200 bg-white
+                placeholder:text-gray-400 hover:border-gray-400`}
+                  />
+                </div>
+              </div>
+            </div>
+            <div>
+              <label htmlFor="from">To</label>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label htmlFor="toDate">Date</label>
+                  <input
+                    type="date"
+                    id="toDate"
+                    name="toDate"
+                    className={`w-full rounded-xl border border-gray-300 px-4 py-3.5 text-gray-900
+                focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 outline-none
+                transition-all duration-200 bg-white
+                placeholder:text-gray-400 hover:border-gray-400`}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="fromDate">Time</label>
+                  <input
+                    type="time"
+                    id="toTime"
+                    name="toTime"
+                    placeholder="eg. 09:30 PM"
+                    className={`w-full rounded-xl border border-gray-300 px-4 py-3.5 text-gray-900
+                focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 outline-none
+                transition-all duration-200 bg-white
+                placeholder:text-gray-400 hover:border-gray-400`}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Registration */}
+        <section className="space-y-6">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-5 bg-indigo-600 rounded-full"></div>
+            <h2 className="text-xl font-bold text-gray-800">Registration</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="grid gap-2">
+              <label htmlFor="fee">Fee</label>
+              <input
+                className={`w-full rounded-xl border border-gray-300 px-4 py-3.5 text-gray-900
+                focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 outline-none
+                transition-all duration-200 bg-white
+                placeholder:text-gray-400 hover:border-gray-400`}
+                type="number"
+                name="fee"
+                min={0}
+                step={1}
+                id="fee"
+                placeholder="e.g- 0"
+              />
+            </div>
+
+            {/* <div className="grid gap-2">
+              <label htmlFor="account">Account Number</label>
+              <input
+                className={`w-full rounded-xl border border-gray-300 px-4 py-3.5 text-gray-900
+                focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 outline-none
+                transition-all duration-200 bg-white
+                placeholder:text-gray-400 hover:border-gray-400`}
+                type="text"
+                name="account"
+                id="account"
+                placeholder="Registration Fee"
+              />
+            </div> */}
+          </div>
+        </section>
+
+        {/* Highlights */}
+        <section className="grid gap-2">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-5 bg-indigo-600 rounded-full"></div>
+            <h2 className="text-xl font-bold text-gray-800">Highlights</h2>
+          </div>
+          <label htmlFor="highlights">Separated by comma ( , )</label>
+          <textarea
+            name="highlights"
+            id="highlights"
+            placeholder="e.g.- Live AI Product Demos, Networking with Industry Leaders, Hands-on Technical Workshops, Startup Pitch Competition"
+            className={`w-full rounded-xl border border-gray-300 px-4 py-3.5 text-gray-900
+                focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 outline-none
+                transition-all duration-200 bg-white
+                placeholder:text-gray-400 hover:border-gray-400`}
+          ></textarea>
+        </section>
+
+        <section className="grid gap-3">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-5 bg-indigo-600 rounded-full"></div>
+            <h2 className="text-xl font-bold text-gray-800">Brochure Link</h2>
+          </div>
+          <input
+            type="text"
+            placeholder="e.g.- https://drive.google.com/file/d/1kksqpGT_YBQsFwsyVyftikPRP-sZZF-e/view?true"
+            name="brochureLink"
+            className={`w-full rounded-xl border border-gray-300 px-4 py-3.5 text-gray-900
+                focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 outline-none
+                transition-all duration-200 bg-white
+                placeholder:text-gray-400 hover:border-gray-400`}
+          />
+        </section>
+
+        {/* Submit */}
+        <div className="pt-8 border-t border-gray-100">
+          <button
+            type="submit"
+            className="group w-full bg-linear-to-r from-indigo-600 to-purple-600 text-white py-3.5 rounded-xl font-semibold hover:shadow-xl hover:shadow-indigo-200 transition-all duration-300 active:scale-[0.98] flex items-center justify-center gap-2"
+          >
+            Publish Event
+          </button>
+          <p className="text-center text-gray-500 text-sm mt-3">
+            Your event will be reviewed and published within 24 hours
+          </p>
         </div>
-
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          <input
-            className={input}
-            placeholder="Time (9:00 AM - 6:00 PM)"
-            name="time"
-            value={form.time}
-            onChange={handleChange}
-          />
-          <input
-            className={input}
-            placeholder="Duration"
-            name="duration"
-            value={form.duration}
-            onChange={handleChange}
-          />
-        </div>
-      </section>
-
-      {/* VENUE */}
-      <section className="space-y-4">
-        <h3 className="text-lg font-semibold">Venue</h3>
-
-        <input
-          className={input}
-          placeholder="Venue Name"
-          value={form.venue.name}
-          onChange={(e) => handleNestedChange("venue", "name", e.target.value)}
-        />
-
-        <input
-          className={input}
-          placeholder="Address"
-          value={form.venue.address}
-          onChange={(e) =>
-            handleNestedChange("venue", "address", e.target.value)
-          }
-        />
-
-        <input
-          className={input}
-          type="number"
-          placeholder="Capacity"
-          value={form.venue.capacity}
-          onChange={(e) =>
-            handleNestedChange("venue", "capacity", e.target.value)
-          }
-        />
-      </section>
-
-      {/* DESCRIPTION */}
-      <section className="space-y-4">
-        <textarea
-          className={`${input} min-h-25`}
-          placeholder="Short description"
-          required
-          value={form.description}
-          onChange={(e) => setForm({ ...form, description: e.target.value })}
-        />
-
-        <textarea
-          className={`${input} min-h-35`}
-          placeholder="Detailed description"
-          value={form.detailedDescription}
-          onChange={(e) =>
-            setForm({ ...form, detailedDescription: e.target.value })
-          }
-        />
-      </section>
-
-      {/* HIGHLIGHTS */}
-      <section className="space-y-4">
-        <h3 className="text-lg font-semibold">Highlights</h3>
-
-        {form.highlights.map((h, i) => (
-          <input
-            key={i}
-            className={input}
-            placeholder={`Highlight ${i + 1}`}
-            value={h}
-            onChange={(e) => handleArrayChange("highlights", i, e.target.value)}
-          />
-        ))}
-
-        <button
-          type="button"
-          onClick={() => addArrayItem("highlights")}
-          className="text-sm font-medium text-indigo-600 hover:underline"
-        >
-          + Add Highlight
-        </button>
-      </section>
-
-      {/* REGISTRATION */}
-      <section className="space-y-4">
-        <h3 className="text-lg font-semibold">Registration</h3>
-
-        <input
-          type="date"
-          className={input}
-          value={form.registration.deadline}
-          onChange={(e) =>
-            handleNestedChange("registration", "deadline", e.target.value)
-          }
-        />
-
-        <input
-          type="number"
-          className={input}
-          placeholder="Fee"
-          value={form.registration.fee}
-          onChange={(e) =>
-            handleNestedChange("registration", "fee", e.target.value)
-          }
-        />
-
-        <label className="flex items-center gap-2 text-sm">
-          <input
-            type="checkbox"
-            checked={form.registration.isFree}
-            onChange={(e) =>
-              handleNestedChange("registration", "isFree", e.target.checked)
-            }
-          />
-          Free Event
-        </label>
-      </section>
-
-      {/* SUBMIT */}
-      <button
-        type="submit"
-        className="w-full rounded-xl bg-indigo-600 py-3 font-semibold text-white hover:bg-indigo-700"
-      >
-        Create Event
-      </button>
-    </form>
+      </form>
+    </div>
   );
-}
+};
+
+export default CreateEventForm;
