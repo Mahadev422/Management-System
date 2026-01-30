@@ -42,7 +42,14 @@ export const useClub = create((set, get) => ({
     }
     set({ clubData: { ...clubData } });
     return clubData;
-  },
+  }
+}));
+
+
+export const useCreateClub = create((set) => ({
+  loading: false,
+  error: null,
+
   handleCreateClub: async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -51,6 +58,7 @@ export const useClub = create((set, get) => ({
     const data = {...formValues, coordinator, members: [{ _id: "6278ac34a6ddb2d2bef792bd", name: "Mahadev" }]}
 
     try {
+      set({loading: true})
       const res = await fetch(`${url}/club/create-club`, {
         method: 'POST',
         headers: {
@@ -60,11 +68,19 @@ export const useClub = create((set, get) => ({
         body: JSON.stringify(data)
       });
       const resData = await res.json();
-      console.log(resData);
-      set({clubs: [...clubs, resData]});
-      e.target.reset();
+      console.log(resData)
+      if(!resData.ok) {
+        set({error: resData.msg});
+      }
+      else {
+        set({error: null});
+        e.target.reset();
+      } 
     } catch (err) {
       console.log(err.message);
+      set({error: err.message});
+    } finally {
+      set({loading: false});
     }
   }
-}));
+}))

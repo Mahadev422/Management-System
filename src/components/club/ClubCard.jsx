@@ -2,25 +2,13 @@ import { useState } from "react";
 import { FaBook, FaCamera, FaCode, FaFilm, FaFlask, FaFutbol, FaGamepad, FaMusic, FaPaintBrush, FaStar, FaTree } from "react-icons/fa";
 import { HiOutlineUsers } from "react-icons/hi";
 import { Link } from "react-router-dom";
+import { useHelper } from "../../store/useHelper";
 
 const ClubCard = ({ club }) => {
 
-  const getCategoryIcon = (category) => {
-    const icons = {
-      Technology: FaCode,
-      Sports: FaFutbol,
-      Arts: FaPaintBrush,
-      Science: FaFlask,
-      Music: FaMusic,
-      Photography: FaCamera,
-      Literature: FaBook,
-      Gaming: FaGamepad,
-      Film: FaFilm,
-      Environment: FaTree
-    };
-    const Icon = icons[category] || FaUsers;
-    return <Icon className="w-5 h-5" />;
-  };
+  const {getCategoryIcon} = useHelper();
+
+  const Icon = getCategoryIcon(club.category);
 
   return (
     <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden group">
@@ -29,7 +17,7 @@ const ClubCard = ({ club }) => {
         <div className="flex justify-between items-start mb-4">
           <div className="flex items-center space-x-4">
             <div className={`p-4 rounded-xl ${club.categoryColor} ${club.iconBgColor}`}>
-              {getCategoryIcon(club.category)}
+              <Icon className="w-5 h-5" />
             </div>
             <div>
               <Link to={`${club.id}`} className="text-xl font-bold text-gray-900 hover:underline hover:text-blue-700">{club.name}</Link>
@@ -69,12 +57,7 @@ const ClubCard = ({ club }) => {
             </div>
           </div>
         </div>
-
-        {/* Action Buttons */}
-        
-          {/* <Link to={`${club.id}`} className="px-6 py-3 border border-gray-300 text-gray-700 rounded-xl font-semibold hover:border-blue-500 hover:text-blue-600 transition-colors">
-            View Details
-          </Link> */}
+          
       </div>
 
       {/* Club Footer - Recent Activity */}

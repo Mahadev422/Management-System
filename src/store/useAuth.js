@@ -31,6 +31,7 @@ export const useLogin = create((set, get) => ({
       }
     } catch (err) {
       console.log(err.message);
+      set({ error: err.message });
     } finally {
       set({ isLoading: false });
     }
@@ -53,6 +54,7 @@ export const useAuth = create((set, get) => ({
         set({ error: resData.msg });
       } else set({ user: { ...resData.msg } });
     } catch (err) {
+      set({ error: err.message });
     } finally {
       set({ loading: false });
     }

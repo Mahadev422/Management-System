@@ -1,9 +1,12 @@
 import { useState } from "react";
-import { useClub } from "../../store/useClub";
+import { useCreateClub } from "../../store/useClub";
+import { useHelper } from "../../store/useHelper";
+
 
 const CreateClub = () => {
 
-  const { handleCreateClub } = useClub();
+  const { handleCreateClub, loading, error } = useCreateClub();
+  const {clubType} = useHelper();
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -19,6 +22,7 @@ const CreateClub = () => {
               className="border border-gray-300 rounded-lg p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               placeholder="Enter club name"
               required
+              disabled={loading}
             />
           </div>
 
@@ -30,12 +34,24 @@ const CreateClub = () => {
               name="category"
               className="border border-gray-300 rounded-lg p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               required
+              disabled={loading}
             >
               <option value="">Select category</option>
-              <option value="tech">Tech</option>
-              <option value="education">Education</option>
-              <option value="finance">Finance</option>
+              {clubType.map((club, i) => <option key={i} value={club}>{club.charAt(0).toUpperCase() + club.slice(1)}</option>)}
             </select>
+          </div>
+
+<div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Tagline
+            </label>
+            <input
+              name="tagline"
+              className="border border-gray-300 rounded-lg p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Enter tagline"
+              required
+              disabled={loading}
+            />
           </div>
 
           <div>
@@ -47,15 +63,16 @@ const CreateClub = () => {
               className="border border-gray-300 rounded-lg p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               rows={4}
               placeholder="Enter club description"
-              required
+              disabled={loading}
             />
           </div>
 
           <button
             type="submit"
+            disabled={loading}
             className="w-full bg-blue-600 text-white font-medium py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >
-            Submit
+            {loading ? 'Creating...' : "Submit"}
           </button>
         </form>
       </div>

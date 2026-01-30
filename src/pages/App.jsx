@@ -2,11 +2,9 @@ import { Outlet } from "react-router-dom";
 
 // local
 import Header from "../components/home/Header";
-import Footer from "../components/home/Footer";
 import { useEffect } from "react";
 import { useAuth } from "../store/useAuth";
 import WebLoader from "../components/loaders/WebLoader";
-import CirclesLoader from "../components/loaders/CirclesLoader";
 
 function App() {
   const { loading, checkLogin, user, error} = useAuth();

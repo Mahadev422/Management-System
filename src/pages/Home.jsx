@@ -1,4 +1,3 @@
-import React from "react";
 import {
   FaGraduationCap,
   FaCalendarAlt,
@@ -14,7 +13,7 @@ import {
   FaRegHandshake,
 } from "react-icons/fa";
 import { HiAcademicCap, HiUserGroup, HiBookOpen } from "react-icons/hi";
-
+import Footer from '../components/home/Footer'
 // Main Home Page Component
 const Home = () => {
   const features = [
@@ -251,6 +250,7 @@ const Home = () => {
           ))}
         </div>
       </section>
+      <Footer />
     </div>
   );
 };

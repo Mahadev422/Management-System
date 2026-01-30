@@ -46,7 +46,7 @@ const pastEvents = (
 
 const ClubEvent = () => {
   const [events, setEvents] = useState(false);
-  console.log(events);
+  
   return (
     <div>
       <div className="p-3 flex gap-4 justify-end">
