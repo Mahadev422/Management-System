@@ -29,16 +29,16 @@ export const useHelper = create(() => ({
 
   getCategoryIcon: (category) => {
       const icons = {
-        Technology: FaCode,
-        Sports: FaFutbol,
-        Arts: FaPaintBrush,
-        Science: FaFlask,
-        Music: FaMusic,
-        Photography: FaCamera,
-        Literature: FaBook,
-        Gaming: FaGamepad,
-        Film: FaFilm,
-        Environment: FaTree,
+        technology: FaCode,
+        sports: FaFutbol,
+        arts: FaPaintBrush,
+        science: FaFlask,
+        music: FaMusic,
+        photography: FaCamera,
+        literature: FaBook,
+        gaming: FaGamepad,
+        film: FaFilm,
+        environment: FaTree,
       };
       const icon = icons[category] || FaUsers;
       return icon;

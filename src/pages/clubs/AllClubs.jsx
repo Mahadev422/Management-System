@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { FaUsers } from "react-icons/fa";
 import ClubCard from "../../components/club/ClubCard";
 import { useClub } from "../../store/useClub";
 import ClubNotFound from "../../components/club/ClubNotFound";
@@ -8,7 +7,6 @@ import CirclesLoader from "../../components/loaders/CirclesLoader";
 
 const AllClubs = () => {
   const { getAllClubs, clubs } = useClub();
-  // const [clubs, setClubs] = useState([]);
   const [loading, setLoading] = useState(false);
   
   useEffect(() => {
@@ -22,7 +20,7 @@ const AllClubs = () => {
 
   const filteredClubs = [...clubs].filter((club) => {
     const matchesSearch =
-      club.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      club.clubName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       club.description.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory =
       filterCategory === "All" || club.category === filterCategory;
@@ -53,7 +51,7 @@ const AllClubs = () => {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {sortedClubs.map((club) => (
-                <ClubCard key={club.id} club={club} />
+                <ClubCard key={club._id} club={club} />
               ))}
             </div>
           )}

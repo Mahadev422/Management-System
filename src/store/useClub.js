@@ -7,19 +7,17 @@ const url = import.meta.env.VITE_BACKEND;
 
 export const useClub = create((set, get) => ({
   clubData: {},
-  clubAchievement: [],
-  clubCoordinators: [],
-  clubDetails: {},
+  loading: false,
+  error: null,
   clubs: [],
 
   set,
   getAllClubs: async () => {
-    set({ clubs: [...clubsList] });
     try {
       const res = await fetch(`${url}/club/get-all`, {credentials: "include"});
       const resData = await res.json();
-      if(!resData.ok) console.log(resData.msg)
-      console.log(resData.msg);
+      if(!resData.ok) set({error: resData.msg});
+      else set({clubs: [...resData.msg]});
     } catch (err) {
       console.log(err.message)
     } finally {
