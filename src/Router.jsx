@@ -15,7 +15,6 @@ import AllEvents from "./pages/events/AllEvents";
 import Event from "./pages/events/Event";
 import EventOverview from "./pages/events/EventOverview";
 import EventParticipants from "./pages/events/EventParticipants";
-import RegisterEvent from "./pages/events/RegisterEvent";
 import Resources from "./pages/resources/Resources";
 import ClubEvent from "./pages/clubs/ClubEvent";
 import ClubGallery from "./pages/clubs/ClubGallery";
@@ -25,7 +24,6 @@ import ProfileOverview from "./pages/profile/ProfileOverview";
 import MyEvents from "./pages/profile/MyEvents";
 import MyClubs from "./pages/profile/MyClubs";
 import MyAchievements from "./pages/profile/MyAchievements";
-import MySettings from "./pages/profile/MySettings";
 import CreateEvent from "./pages/events/CreateEvent";
 
 const Router = createBrowserRouter([
@@ -59,11 +57,7 @@ const Router = createBrowserRouter([
               {
                 path: "achievements",
                 element: <MyAchievements />,
-              },
-              {
-                path: "settings",
-                element: <MySettings />,
-              },
+              }
             ],
           },
           {

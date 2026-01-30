@@ -4,7 +4,9 @@ const url = import.meta.env.VITE_BACKEND;
 
 export const useEvent = create((set, get) => ({
 
-
+  getEvents: async () => {
+    
+  },
   handleCreateEvent: async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -16,6 +18,7 @@ export const useEvent = create((set, get) => ({
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify(data)
       });
       const resData = await res.json()

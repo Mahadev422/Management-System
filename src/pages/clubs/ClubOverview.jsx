@@ -1,11 +1,10 @@
 import ClubAchievement from "../../components/club/ClubAchievement";
-import ClubLoader from '../../components/loaders/ClubLoader'
 import { useClub } from "../../store/useClub";
 
 const ClubOverview = () => {
   const { clubData } = useClub();
 
-  if(Object.keys(clubData).length == 0) return <ClubLoader />
+  if(Object.keys(clubData).length == 0) return <p>Loading...</p>
 
   return (
     <div className="space-y-8">

@@ -16,7 +16,7 @@ export const useClub = create((set, get) => ({
   getAllClubs: async () => {
     set({ clubs: [...clubsList] });
     try {
-      const res = await fetch(`${url}/club/get-all`);
+      const res = await fetch(`${url}/club/get-all`, {credentials: "include"});
       const resData = await res.json();
       if(!resData.ok) console.log(resData.msg)
       console.log(resData.msg);
@@ -56,6 +56,7 @@ export const useClub = create((set, get) => ({
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify(data)
       });
       const resData = await res.json();

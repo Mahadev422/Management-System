@@ -25,8 +25,10 @@ const MyClubs = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {userData.clubsJoined.length == 0 ? (
-            <div className="bg-gray-100 w-full p-4 block rounded">
-              <p className="text-center text-2xl font-bold">You have not join any club</p>
+            <div className="bg-gray-100 px-4 py-6 rounded">
+              <p className="text-center text-2xl font-bold">
+                You have not jooined any Club
+              </p>
             </div>
             ) : userData.clubsJoined.map((club) => (
             <JoinedClubCard key={club.id} club={club} />

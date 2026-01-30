@@ -1,12 +1,11 @@
 import { FaSearch } from "react-icons/fa";
 import MemberCard from "../../components/club/MemberCard";
 import { useClub } from "../../store/useClub";
-import ClubLoader from "../../components/loaders/ClubLoader";
 
 const ClubMembers = () => {
   const {clubData} = useClub();
 
-  if(Object.keys(clubData).length == 0) return <ClubLoader />
+  if(Object.keys(clubData).length == 0) return <p>Loading...</p>
   return (
     <div className="bg-white rounded-2xl shadow-lg p-8">
       <div className="flex justify-between items-center mb-6">

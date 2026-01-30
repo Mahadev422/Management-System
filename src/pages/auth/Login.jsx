@@ -1,27 +1,36 @@
-import { useState } from 'react';
-import { FaEye, FaEyeSlash, FaEnvelope, FaLock, FaGoogle, FaGithub, FaFacebook, FaArrowRight } from 'react-icons/fa';
-import { MdErrorOutline } from 'react-icons/md';
-import ForgotPassword from './ForgotPassword';
-import { useLogin } from '../../store/useAuth';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import {
+  FaEye,
+  FaEyeSlash,
+  FaEnvelope,
+  FaLock,
+  FaGoogle,
+  FaGithub,
+  FaFacebook,
+  FaArrowRight,
+} from "react-icons/fa";
+import { MdErrorOutline } from "react-icons/md";
+import ForgotPassword from "./ForgotPassword";
+import { useLogin } from "../../store/useAuth";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [showPassword, setShowPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
   const { handleLogin, isLoading, error, user } = useLogin();
 
-  if(user) return <Navigate to={'/'} />
+  if (user) return <Navigate to={"/"} />;
 
   return (
     <div className="min-h-screen bg-linear-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-grid-pattern opacity-[0.02]"></div>
-      
+
       {/* Main Container */}
       <div className="relative w-full max-w-md">
         {/* Decorative Elements */}
         <div className="absolute -top-6 -right-6 w-32 h-32 bg-purple-200 rounded-full blur-2xl opacity-30"></div>
         <div className="absolute -bottom-6 -left-6 w-40 h-40 bg-indigo-200 rounded-full blur-2xl opacity-30"></div>
-        
+
         {/* Login Card */}
         <div className="relative bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl shadow-indigo-100/50 border border-white/20 overflow-hidden">
           {/* Header */}
@@ -33,10 +42,10 @@ const Login = () => {
               <h1 className="text-3xl font-bold bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
                 Welcome Back
               </h1>
-              </div>
+            </div>
 
             {/* Login Form */}
-            <form onSubmit={handleLogin} action='#' className="space-y-5">
+            <form onSubmit={handleLogin} action="#" className="space-y-5">
               {/* Username/Email Field */}
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700">
@@ -47,6 +56,7 @@ const Login = () => {
                   <input
                     type="text"
                     name="userName"
+                    required
                     placeholder="Enter your email or username"
                     className="w-full pl-12 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none transition-all placeholder:text-gray-400"
                     disabled={isLoading}
@@ -74,6 +84,7 @@ const Login = () => {
                   <input
                     type={showPassword ? "text" : "password"}
                     name="password"
+                    required
                     placeholder="Enter your password"
                     className="w-full pl-12 pr-12 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none transition-all placeholder:text-gray-400"
                     disabled={isLoading}
@@ -84,7 +95,11 @@ const Login = () => {
                     className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
                     disabled={isLoading}
                   >
-                    {showPassword ? <FaEyeSlash className="w-5 h-5" /> : <FaEye className="w-5 h-5" />}
+                    {showPassword ? (
+                      <FaEyeSlash className="w-5 h-5" />
+                    ) : (
+                      <FaEye className="w-5 h-5" />
+                    )}
                   </button>
                 </div>
               </div>

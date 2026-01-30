@@ -19,23 +19,28 @@ import {
   HiOutlineGlobe,
 } from "react-icons/hi";
 
-import { Link, Outlet } from "react-router-dom";
+import { Link, Navigate, Outlet } from "react-router-dom";
 import { userData } from "../../data/profile";
 import BasicDetails from "../../components/profile/BasicDetails";
 import { useUser } from "../../store/useUser";
-import { useLogin } from "../../store/useAuth";
+import { useAuth, useLogin } from "../../store/useAuth";
+import CirclesLoader from "../../components/loaders/CirclesLoader";
 // Main Profile Page Component
 const Me = () => {
-  const { getUserData, userData, loading } = useUser();
-  const {user} = useLogin();
+  const { getMyData, userData, loading } = useUser();
+  const {user} = useAuth()
 
-  console.log(user);
 
   useEffect(() => {
-    if (Object.keys(userData).length == 0) getUserData();
+    
+    async function get() {
+      if (Object.keys(userData).length == 0) await getMyData();
+    }
+    get();
   }, [userData]);
-
+  if(loading) return <CirclesLoader />
   if (Object.keys(userData).length == 0) return <p>Loading...</p>;
+  if(!user) return <Navigate to='/login' />
   return (
     <div className="min-h-screen bg-linear-to-b from-gray-50 to-white">
       {/* Profile Cover Section */}
@@ -130,8 +135,7 @@ const Me = () => {
                     link: "achievements",
                     label: "Achievements",
                     icon: FaTrophy,
-                  },
-                  { link: "settings", label: "Settings", icon: FaCog },
+                  }
                 ].map((tab, i) => {
                   const Icon = tab.icon;
                   return (

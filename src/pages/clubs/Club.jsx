@@ -3,7 +3,7 @@ import BasicInfo from "../../components/club/BasicInfo";
 import ClubDetails from "../../components/club/ClubDetails";
 import { useClub } from "../../store/useClub";
 import { useEffect } from "react";
-import ClubLoader from "../../components/loaders/ClubLoader";
+import CirclesLoader from "../../components/loaders/CirclesLoader";
 
 const Club = () => {
   const { clubId } = useParams();
@@ -16,7 +16,7 @@ const Club = () => {
       getClubById(clubId);
   }, [clubData]);
   
-  if (Object.keys(clubData).length == 0) return <ClubLoader />;
+  if (Object.keys(clubData).length == 0) return <CirclesLoader />;
   return (
     <div className="min-h-screen bg-linear-to-b from-gray-50 to-white">
       {/* Hero Section with Cover Image */}

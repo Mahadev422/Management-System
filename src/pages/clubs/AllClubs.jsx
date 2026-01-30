@@ -4,7 +4,7 @@ import ClubCard from "../../components/club/ClubCard";
 import { useClub } from "../../store/useClub";
 import ClubNotFound from "../../components/club/ClubNotFound";
 import ClubControl from "../../components/club/ClubControl";
-import ClubLoader from '../../components/loaders/ClubLoader'
+import CirclesLoader from "../../components/loaders/CirclesLoader";
 
 const AllClubs = () => {
   const { getAllClubs, clubs } = useClub();
@@ -48,7 +48,7 @@ const AllClubs = () => {
             </h2>
           </div>
 
-          {(loading || clubs.length == 0) ? <ClubLoader /> : filteredClubs.length === 0 ? (
+          {(loading || clubs.length == 0) ? <CirclesLoader /> : filteredClubs.length === 0 ? (
             <ClubNotFound setFilterCategory={setFilterCategory} setSearchTerm={setSearchTerm} />
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
