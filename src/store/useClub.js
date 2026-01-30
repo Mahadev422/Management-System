@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 import { clubsList } from "../data/clubList";
-import { clubData } from "../data/clubData";
+
 
 const url = import.meta.env.VITE_BACKEND;
 
@@ -22,27 +22,30 @@ export const useClub = create((set, get) => ({
       console.log(err.message)
     } finally {
       return clubsList;
-    }
-    
-    
-  },
-  getClubById: (id) => {
-    const clubs = get().clubs;
-    if (clubs.length != 0) {
-      const data = clubs.filter((club) => club.id === Number(id));
-      set({ clubData: { ...clubData } });
-      return clubData;
-    }
-
-    const data = clubsList.filter((club) => club.id === Number(id));
-    if (data.length == 0) {
-      window.location.href = "/clubs";
-    }
-    set({ clubData: { ...clubData } });
-    return clubData;
+    } 
   }
 }));
 
+export const useClubById = create((set) => ({
+  loading: false,
+  error: null,
+  clubData: {},
+  clubDat: {},
+
+  getClubById: async (clubId) => {
+    set({loading: true});
+    try {
+      const res = await fetch(`${url}/club/${clubId}`,{credentials: "include"});
+      const resData = await res.json();
+      if(!resData.ok) set({error: resData.msg, loading: false});
+      else set({clubData: resData.msg, error: null, loading: false});
+    } catch (err) {
+      set({error: err.message})
+    } finally {
+      set({loading: false});
+    }
+  }
+}))
 
 export const useCreateClub = create((set) => ({
   loading: false,

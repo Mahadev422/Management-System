@@ -1,7 +1,7 @@
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import BasicInfo from "../../components/club/BasicInfo";
 import ClubDetails from "../../components/club/ClubDetails";
-import { useClub } from "../../store/useClub";
+import { useClub, useClubById } from "../../store/useClub";
 import { useEffect } from "react";
 import CirclesLoader from "../../components/loaders/CirclesLoader";
 
@@ -9,13 +9,17 @@ const Club = () => {
   const { clubId } = useParams();
   const location = useLocation();
 
-  const { getClubById, clubData } = useClub();
+  // const { clubData, getClubBy } = useClub();
 
+  const {getClubById, loading, error, clubData} = useClubById();
+  // const clubData = {...club}
   useEffect(() => {
-    if (Object.keys(clubData).length == 0) 
-      getClubById(clubId);
-  }, [clubData]);
+    if(Object.keys(clubData).length == 0) getClubById(clubId);
+  },[clubId, clubData]);
   
+  
+  if(loading) return <CirclesLoader />
+  if(error) return <p>{error}</p>
   if (Object.keys(clubData).length == 0) return <CirclesLoader />;
   return (
     <div className="min-h-screen bg-linear-to-b from-gray-50 to-white">
@@ -31,7 +35,7 @@ const Club = () => {
         </div>
 
         {/* Club Basic Info */}
-        <BasicInfo />
+        <BasicInfo clubData={clubData} />
       </div>
 
       {/* Main Content */}

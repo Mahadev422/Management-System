@@ -25,6 +25,7 @@ import MyEvents from "./pages/profile/MyEvents";
 import MyClubs from "./pages/profile/MyClubs";
 import MyAchievements from "./pages/profile/MyAchievements";
 import CreateEvent from "./pages/events/CreateEvent";
+import MySettings from "./pages/profile/MySettings";
 
 const Router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ const Router = createBrowserRouter([
               {
                 path: "achievements",
                 element: <MyAchievements />,
+              },
+              {
+                path: 'settings',
+                element: <MySettings />
               }
             ],
           },

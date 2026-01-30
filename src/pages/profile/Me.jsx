@@ -25,6 +25,7 @@ import BasicDetails from "../../components/profile/BasicDetails";
 import { useUser } from "../../store/useUser";
 import { useAuth, useLogin } from "../../store/useAuth";
 import CirclesLoader from "../../components/loaders/CirclesLoader";
+import { IoMdSettings } from "react-icons/io";
 // Main Profile Page Component
 const Me = () => {
   const { getMyData, userData, loading } = useUser();
@@ -135,6 +136,11 @@ const Me = () => {
                     link: "achievements",
                     label: "Achievements",
                     icon: FaTrophy,
+                  },
+                  {
+                    link: 'settings',
+                    label: 'Settings',
+                    icon: IoMdSettings
                   }
                 ].map((tab, i) => {
                   const Icon = tab.icon;

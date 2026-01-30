@@ -1,9 +1,9 @@
 import { FaSearch } from "react-icons/fa";
 import MemberCard from "../../components/club/MemberCard";
-import { useClub } from "../../store/useClub";
+import { useClubById } from "../../store/useClub";
 
 const ClubMembers = () => {
-  const {clubData} = useClub();
+  const {clubData} = useClubById();
 
   if(Object.keys(clubData).length == 0) return <p>Loading...</p>
   return (
@@ -23,7 +23,9 @@ const ClubMembers = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        {clubData.members.map((member) => (
+        {clubData.members.length == 0 ? <div>
+          <p>No member join right now</p>
+        </div> : clubData.members.map((member) => (
           <MemberCard key={member.id} member={member} />
         ))}
       </div>

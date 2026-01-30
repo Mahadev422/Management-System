@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
 import ClubAchievement from "../../components/club/ClubAchievement";
-import { useClub } from "../../store/useClub";
+import { useClubById } from "../../store/useClub";
+import { MdAdminPanelSettings } from "react-icons/md";
 
 const ClubOverview = () => {
-  const { clubData } = useClub();
+  const {clubData} = useClubById();
 
   if(Object.keys(clubData).length == 0) return <p>Loading...</p>
 
@@ -26,26 +28,22 @@ const ClubOverview = () => {
             Club Coordinators
           </h2>
           <span className="px-4 py-2 bg-blue-100 text-blue-600 rounded-lg font-semibold">
-            {clubData.coordinators.length} Coordinators
+            {clubData.coordinator.length} Coordinators
           </span>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {clubData.coordinators.map((coordinator) => (
+          {clubData.coordinator.map((coordinator) => (
             <div
-              key={coordinator.id}
-              className="bg-linear-to-br from-blue-50 to-purple-50 rounded-xl p-6"
+              key={coordinator._id}
+              className="bg-linear-to-br from-blue-50 to-purple-50 rounded-xl p-2"
             >
-              <div className="flex items-center space-x-4 mb-4">
-                <img
-                  src={coordinator.avatar}
-                  alt={coordinator.name}
-                  className="w-16 h-16 rounded-full object-cover border-4 border-white"
-                />
+              <div className="flex items-center gap-1">
+                <MdAdminPanelSettings className="h-15 w-15" />
                 <div>
-                  <h4 className="font-bold text-gray-900">
+                  <Link to={`/profile/${clubData._id}`} className="font-bold text-gray-900">
                     {coordinator.name}
-                  </h4>
-                  <p className="text-blue-600 font-semibold">
+                  </Link>
+                  <p className="text-red-400 font-semibold">
                     {coordinator.role}
                   </p>
                   <div className="flex items-center space-x-2 mt-1">

@@ -1,10 +1,22 @@
 import React from "react";
-import { FaCalendarAlt, FaCheck, FaInstagram, FaLinkedin, FaMapMarkerAlt, FaRegCalendar, FaTwitter, FaYoutube } from "react-icons/fa";
+import {
+  FaCalendarAlt,
+  FaCheck,
+  FaInstagram,
+  FaLinkedin,
+  FaMapMarkerAlt,
+  FaRegCalendar,
+  FaTwitter,
+  FaYoutube,
+} from "react-icons/fa";
 import { HiOutlineGlobe, HiOutlineMail } from "react-icons/hi";
-
-import { clubData } from "../../data/clubData";
+import { useClubById } from "../../store/useClub";
+import { useHelper } from "../../store/useHelper";
 
 const ClubDetails = () => {
+  const { clubData } = useClubById();
+  const { formatDate } = useHelper();
+  
   return (
     <div className="lg:w-1/3 space-y-6">
       {/* Club Details Card */}
@@ -15,39 +27,32 @@ const ClubDetails = () => {
             <FaCalendarAlt className="w-5 h-5 text-blue-600" />
             <div>
               <div className="text-sm text-gray-500">Founded</div>
-              <div className="font-medium">{clubData.details.founded}</div>
+              <div className="font-medium">
+                {formatDate(clubData.createdAt)}
+              </div>
             </div>
           </div>
           <div className="flex items-center space-x-3">
             <FaMapMarkerAlt className="w-5 h-5 text-blue-600" />
             <div>
               <div className="text-sm text-gray-500">Meeting Location</div>
-              <div className="font-medium">
-                {clubData.details.meetingLocation}
+              <div className="font-medium">{clubData.location}</div>
+            </div>
+          </div>
+          {clubData.details.website !== "" && (
+            <div className="flex items-center space-x-3">
+              <HiOutlineGlobe className="w-5 h-5 text-blue-600" />
+              <div>
+                <div className="text-sm text-gray-500">Website</div>
+                <a
+                  href={clubData.details.website}
+                  className="font-medium text-blue-600 hover:underline"
+                >
+                  {clubData.details.website}
+                </a>
               </div>
             </div>
-          </div>
-          <div className="flex items-center space-x-3">
-            <FaRegCalendar className="w-5 h-5 text-blue-600" />
-            <div>
-              <div className="text-sm text-gray-500">Schedule</div>
-              <div className="font-medium">
-                {clubData.details.meetingSchedule}
-              </div>
-            </div>
-          </div>
-          <div className="flex items-center space-x-3">
-            <HiOutlineGlobe className="w-5 h-5 text-blue-600" />
-            <div>
-              <div className="text-sm text-gray-500">Website</div>
-              <a
-                href={clubData.details.website}
-                className="font-medium text-blue-600 hover:underline"
-              >
-                {clubData.details.website}
-              </a>
-            </div>
-          </div>
+          )}
           <div className="flex items-center space-x-3">
             <HiOutlineMail className="w-5 h-5 text-blue-600" />
             <div>
@@ -71,25 +76,25 @@ const ClubDetails = () => {
           </h3>
           <div className="flex space-x-4">
             <a
-              href={clubData.socialMedia.instagram}
-              className="p-3 bg-linear-to-r from-pink-500 to-purple-500 text-white rounded-xl hover:shadow-lg"
-            >
-              <FaInstagram className="w-6 h-6" />
-            </a>
-            <a
-              href={clubData.socialMedia.twitter}
+              href={clubData.details.twitter}
               className="p-3 bg-blue-400 text-white rounded-xl hover:shadow-lg"
             >
               <FaTwitter className="w-6 h-6" />
             </a>
             <a
-              href={clubData.socialMedia.linkedin}
+              href={clubData.details.instagram}
+              className="p-3 bg-orange-500 text-white rounded-xl hover:shadow-lg"
+            >
+              <FaInstagram className="w-6 h-6" />
+            </a>
+            <a
+              href={clubData.details.linkedin}
               className="p-3 bg-blue-700 text-white rounded-xl hover:shadow-lg"
             >
               <FaLinkedin className="w-6 h-6" />
             </a>
             <a
-              href={clubData.socialMedia.youtube}
+              href={clubData.details.youtube}
               className="p-3 bg-red-600 text-white rounded-xl hover:shadow-lg"
             >
               <FaYoutube className="w-6 h-6" />
