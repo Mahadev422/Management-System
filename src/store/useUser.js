@@ -16,6 +16,7 @@ export const useUser = create((set, get) => ({
       const resData = await res.json();
       if (!resData.ok) {
         set({ error: resData.msg });
+        window.location.href = '/login';
       }
       else set({ user: { ...resData.msg }, userData: { ...resData.msg } });
     } catch (err) {

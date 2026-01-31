@@ -9,13 +9,11 @@ const Club = () => {
   const { clubId } = useParams();
   const location = useLocation();
 
-  // const { clubData, getClubBy } = useClub();
-
   const {getClubById, loading, error, clubData} = useClubById();
   // const clubData = {...club}
   useEffect(() => {
-    if(Object.keys(clubData).length == 0) getClubById(clubId);
-  },[clubId, clubData]);
+    getClubById(clubId);
+  },[clubId]);
   
   
   if(loading) return <CirclesLoader />

@@ -28,6 +28,7 @@ export const useLogin = create((set, get) => ({
       } else {
         set({ error: null });
         e.target.reset();
+        window.location.href = '/';
       }
     } catch (err) {
       console.log(err.message);
@@ -37,6 +38,18 @@ export const useLogin = create((set, get) => ({
     }
   },
 }));
+
+export const useLogout = create((set) => ({
+  loading: false,
+  error: null,
+
+  handleLogout: async () => {
+    const res = await fetch(`${url}/auth/logout`,{credentials: "include"});
+    const resData = await res.json();
+    console.log(resData);
+  }
+}));
+
 
 export const useAuth = create((set, get) => ({
   loading: false,

@@ -7,13 +7,13 @@ import { useAuth } from "../store/useAuth";
 import WebLoader from "../components/loaders/WebLoader";
 
 function App() {
-  const { loading, checkLogin, user, error} = useAuth();
+  const { loading, checkLogin, user} = useAuth();
 
   useEffect(() => {
     if (!user) checkLogin();
   }, [user]);
+  
   if (loading) return <WebLoader />;
-  // if(error) return <p>{error}</p>
   return (
     <>
       <div className="w-full sticky top-0 z-100">

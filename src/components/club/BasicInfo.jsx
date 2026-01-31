@@ -1,7 +1,8 @@
 import React from "react";
-import { FaShareAlt, FaUserPlus, FaUsers } from "react-icons/fa";
+import { FaClock, FaHourglassHalf, FaShareAlt, FaUserPlus, FaUsers } from "react-icons/fa";
 import { FcApproval, FcDisapprove } from "react-icons/fc";
 import { useAuth } from "../../store/useAuth";
+import StatusCard from "./StatusCard";
 const BasicInfo = ({ clubData }) => {
   const { user } = useAuth();
 
@@ -40,28 +41,7 @@ const BasicInfo = ({ clubData }) => {
               <p className="text-xl text-gray-600 mb-4">{clubData.tagline}</p>
               <div className="flex items-center gap-2">
                 <h1>Status:</h1>
-                <div>
-                  {clubData.approved == "accepted" ? (
-                    <div className="flex items-center space-x-1">
-                      <span className="font-semibold font-serif text-green-500">
-                        {clubData.approved}
-                      </span>
-                      <FcApproval className="w-5 h-5" />
-                    </div>
-                  ) : clubData.approved == "pending" ? (
-                    <div className="flex items-center space-x-1">
-                      <span>{clubData.approved}</span>
-                      <FcApproval className="w-5 h-5" />
-                    </div>
-                  ) : (
-                    <div className="flex items-center space-x-1">
-                      <span className="font-semibold font-serif text-red-500">
-                        {clubData.approved}
-                      </span>
-                      <FcDisapprove className="w-5 h-5" />
-                    </div>
-                  )}
-                </div>
+                <StatusCard status={clubData.approved} />
               </div>
             </div>
           </div>

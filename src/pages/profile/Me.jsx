@@ -29,19 +29,17 @@ import { IoMdSettings } from "react-icons/io";
 // Main Profile Page Component
 const Me = () => {
   const { getMyData, userData, loading } = useUser();
-  const {user} = useAuth()
-
+  const { user } = useAuth();
 
   useEffect(() => {
-    
-    async function get() {
-      if (Object.keys(userData).length == 0) await getMyData();
-    }
-    get();
+    if (Object.keys(userData).length == 0) getMyData();
   }, [userData]);
-  if(loading) return <CirclesLoader />
+
+
+  if (loading) return <CirclesLoader />;
+  if (!user) return <Navigate to="/login" />;
   if (Object.keys(userData).length == 0) return <p>Loading...</p>;
-  if(!user) return <Navigate to='/login' />
+  
   return (
     <div className="min-h-screen bg-linear-to-b from-gray-50 to-white">
       {/* Profile Cover Section */}
@@ -104,7 +102,6 @@ const Me = () => {
                   Social Links
                 </h3>
                 <div className="flex space-x-3">
-                  
                   <a
                     href=""
                     className="p-3 bg-gray-100 text-gray-700 rounded-xl hover:bg-blue-100 hover:text-blue-600 transition-colors"
@@ -117,7 +114,6 @@ const Me = () => {
                   >
                     <FaLinkedin className="w-6 h-6" />
                   </a>
-                  
                 </div>
               </div>
             </div>
@@ -138,10 +134,10 @@ const Me = () => {
                     icon: FaTrophy,
                   },
                   {
-                    link: 'settings',
-                    label: 'Settings',
-                    icon: IoMdSettings
-                  }
+                    link: "settings",
+                    label: "Settings",
+                    icon: IoMdSettings,
+                  },
                 ].map((tab, i) => {
                   const Icon = tab.icon;
                   return (

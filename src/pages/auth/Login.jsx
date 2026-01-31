@@ -1,24 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   FaEye,
   FaEyeSlash,
   FaEnvelope,
   FaLock,
-  FaGoogle,
-  FaGithub,
-  FaFacebook,
   FaArrowRight,
 } from "react-icons/fa";
 import { MdErrorOutline } from "react-icons/md";
 import ForgotPassword from "./ForgotPassword";
-import { useLogin } from "../../store/useAuth";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useAuth, useLogin } from "../../store/useAuth";
+import { Navigate } from "react-router-dom";
+import CirclesLoader from '../../components/loaders/CirclesLoader';
+
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
-  const { handleLogin, isLoading, error, user } = useLogin();
+  const { handleLogin, isLoading, error } = useLogin();
 
+  const {user, loading, checkLogin} = useAuth();
+  useEffect(() => {
+    checkLogin();
+  },[0])
+
+if(loading) return <CirclesLoader />
   if (user) return <Navigate to={"/"} />;
 
   return (

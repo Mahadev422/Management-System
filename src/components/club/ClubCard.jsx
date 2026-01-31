@@ -2,12 +2,13 @@ import { FaStar } from "react-icons/fa";
 import { HiOutlineUsers } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { useHelper } from "../../store/useHelper";
+import StatusCard from "./StatusCard";
 
 const ClubCard = ({ club }) => {
-  const { getCategoryIcon } = useHelper();
+  const { getCategoryIcon, firstCapital } = useHelper();
 
   const Icon = getCategoryIcon(club.category);
-  
+  console.log(club);
   return (
     <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden group">
       {/* Club Header */}
@@ -26,9 +27,9 @@ const ClubCard = ({ club }) => {
               </Link>
               <div className="flex items-center space-x-2 mt-1">
                 <span
-                  className={`px-3 py-1 rounded-full text-xs font-semibold ${club.categoryColor}`}
+                  className={`px-3 py-1 rounded-md font-semibold bg-green-400`}
                 >
-                  {club.category}
+                  {firstCapital(club.category)}
                 </span>
               </div>
             </div>
@@ -39,7 +40,16 @@ const ClubCard = ({ club }) => {
         <p className="text-gray-600 mb-6 line-clamp-2">{club.description}</p>
 
         {/* Club Stats */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-3 gap-4">
+          <div className="grid text-center border-gray-200">
+            <div className="flex items-center justify-center space-x-2 text-gray-500 mb-1">
+              <HiOutlineUsers className="w-4 h-4" />
+              <span className="text-sm">Status</span>
+            </div>
+            <div>
+              <StatusCard status={club.approved} />
+            </div>
+          </div>
           <div className="text-center border-gray-200">
             <div className="flex items-center justify-center space-x-2 text-gray-500 mb-1">
               <HiOutlineUsers className="w-4 h-4" />
